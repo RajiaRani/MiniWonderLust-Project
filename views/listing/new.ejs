@@ -1,0 +1,82 @@
+<%- layout("layouts/boilerplate.ejs") %>
+<div class="row mt-3"> <!-- mt means margin from top-->
+
+      <div class="col-8 offset-2"> <!-- offset means left-margin -->
+
+        <h3>Create a new Listing:</h3>
+
+        <form method="POST" action="/listings" novalidate class="needs-validation"></form>
+        <div class="mb-3"> <!-- mb = margin bottom3-->
+          <label for="title" class="form-label">Title</label>
+          <input 
+          type="text" 
+          placeholder="Add a catchy title" 
+          name="Listing[title]" 
+          class="form-control" 
+          required 
+          />
+         
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea 
+          name="Listing[description]" 
+          type="text" 
+          class="form-control" 
+          required >
+          </textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="imgae" class="form-label">Image Link</label>
+          <input
+           type="text" 
+           placeholder="Enter image URL/Link" 
+           name="Listing[image]" 
+           class="form-control"
+           />
+
+        </div>
+
+        <div class="row">
+
+          <div class="mb-3 col-md-4"> <!-- col -md-3 means medium pr aa kar column 3 ho jayega-->
+            <label for="price" class="form-label">Price</label>
+            <input type="number" 
+            placeholder="1200" 
+            name="Listing[price]"
+             class="form-control" 
+             required 
+             />
+           
+          </div>
+
+          <div class="mb-3   col-md-8">
+            <label for="location" class="form-label">Location</label>
+            <input type="text"
+             placeholder="Delhi,India" 
+             name="Listing[location]" 
+             class="form-control" 
+             required 
+             />
+            
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="countrey" class="form-label">Country</label>
+          <input type="text" 
+          placeholder="India"
+           name="Listing[country]" 
+           class="form-control" 
+           required 
+           />
+          
+        </div>
+
+        <button class="btn btn-dark  mt-3">Add</button>
+        <br /> <br />
+      </form>
+      </div>
+    </div>
+<script src="/js/script.js"></script>

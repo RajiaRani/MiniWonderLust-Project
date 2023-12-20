@@ -1,0 +1,46 @@
+<% layout("layouts/boilerplate.ejs") %>
+
+    
+        <div class="row mt-3"> <!-- mt means margin from top-->
+
+            <div class="col-8 offset-2">
+                <h3>Edit you Listing:</h3>
+                <div class="mb-3 ">
+
+                    <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation">
+                    <label for="title">Title</label>
+                    <input type="text" value="<%= listing.title %>" name="Listing[title]"  class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea name="Listing[description]"  class="form-control" required><%= listing.description%> </textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="imgae" class="form-label">Image Link</label>
+                    <input value="<%= listing.image %>" name="Listing[image]"  class="form-control" required>
+                </div>
+                <div class="row">
+                <div class="mb-3 col-md-4">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" value="<%= listing.price %>" name="Listing[price]"  class="form-control" required>
+                </div>
+
+                <div class="mb-3 col-md-8">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" value="<%= listing.location %>" name="Listing[location]"  class="form-control" required>
+                </div>
+                </div>
+                <div class="mb-3">
+                    <label for="countrey" class="form-label">Country</label>
+                    <input type="text" value="<%= listing.country %>" name="Listing[country]"  class="form-control" required>
+                </div>
+                <button class="btn btn-dark editBtn  mt-3">Edit</button>
+
+            </div>
+        </div>
+    </form>
+   <script src="/js/script.js"></script>
+
+ 
