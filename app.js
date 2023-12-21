@@ -4,7 +4,7 @@ const path = require("path");
 
 const mongoose = require("mongoose");
 const Listing = require("./models/listing.js");
-const methodoverride = require("method-override");
+const methodOverride = require("method-override");
 
 const ejsMate = require("ejs-mate");
 app.engine("ejs", ejsMate);
@@ -13,7 +13,7 @@ app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
 
 app.use(express.urlencoded({extended: true}));
-app.use(methodoverride("_method"));
+app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname,"/public")));
 
 
@@ -61,13 +61,15 @@ app.get("/listings/:id", async(req,res) => {
 app.post("/listings", async(req,res) => {
  //let {title, description, image, price, location, country} = req.body;
  //let listing = req.body;
- //let listing = req.body.Listing;
-const newListing = new Listing(req.body.Listing);
- await newListing.save();
+// let listing = req.body.listing;
  //console.log(listing);
+const newListing = new Listing(req.body.listing);
+await newListing.save();
  res.redirect("/listings");
 });
 
+
+//Edit route
 app.get("/listings/:id/edit", async(req,res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
@@ -78,9 +80,9 @@ app.get("/listings/:id/edit", async(req,res) => {
 //update route
 app.put("/listings/:id", async(req,res) => {
     let {id} =req.params;
-   await Listing.findByIdAndUpdate(id, { ...req.body.Listing });
-   //res.redirect("/listings");
-   res.redirect(`/listings/ ${id}`);
+   await Listing.findByIdAndUpdate(id, {...req.body.listing });
+   res.redirect("/listings");
+   //res.redirect(`/listings/${id}`);
 });
 
 //delete route

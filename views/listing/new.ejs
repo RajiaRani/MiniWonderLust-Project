@@ -1,40 +1,45 @@
 <%- layout("layouts/boilerplate.ejs") %>
-<div class="row mt-3"> <!-- mt means margin from top-->
+  <div class="row mt-3"> <!-- mt means margin from top-->
 
-      <div class="col-8 offset-2"> <!-- offset means left-margin -->
+    <div class="col-8 offset-2"> <!-- offset means left-margin -->
 
-        <h3>Create a new Listing:</h3>
+      <h3>Create a new Listing:</h3>
 
-        <form method="POST" action="/listings" novalidate class="needs-validation"></form>
+      <form method="POST" action="/listings" novalidate class="needs-validation">
+        <!--class="needs-validation" take from bootstrap-->
         <div class="mb-3"> <!-- mb = margin bottom3-->
           <label for="title" class="form-label">Title</label>
-          <input 
-          type="text" 
+          <input type="text" 
           placeholder="Add a catchy title" 
-          name="Listing[title]" 
+          name="listing[title]" 
           class="form-control" 
-          required 
-          />
-         
+          required />
+         <div class="valid-feedback">
+          Title looks good!
+         </div>
+
         </div>
         <div class="mb-3">
           <label for="description" class="form-label">Description</label>
-          <textarea 
-          name="Listing[description]" 
+          <textarea name="listing[description]" 
           type="text" 
           class="form-control" 
-          required >
-          </textarea>
+          required>
+        </textarea>
+          
+          <!-- here i give the failure text or else Invalid text -->
+          <div class="invalid-feedback">
+            Description should be valid.
+          </div>
+
         </div>
 
         <div class="mb-3">
           <label for="imgae" class="form-label">Image Link</label>
-          <input
-           type="text" 
-           placeholder="Enter image URL/Link" 
-           name="Listing[image]" 
-           class="form-control"
-           />
+          <input type="text" 
+          placeholder="Enter image URL/Link" 
+          name="listing[image]" 
+          class="form-control" />
 
         </div>
 
@@ -42,41 +47,52 @@
 
           <div class="mb-3 col-md-4"> <!-- col -md-3 means medium pr aa kar column 3 ho jayega-->
             <label for="price" class="form-label">Price</label>
-            <input type="number" 
-            placeholder="1200" 
-            name="Listing[price]"
-             class="form-control" 
-             required 
-             />
-           
+             <input  
+            placeholder="1200"
+            name="listing[price]"
+            class="form-control"
+            required
+            />
+
+            <!-- here i give the failure text or else Invalid text -->
+            <div class="invalid-feedback">
+              Price should be valid.
+            </div>
           </div>
 
           <div class="mb-3   col-md-8">
             <label for="location" class="form-label">Location</label>
             <input type="text"
-             placeholder="Delhi,India" 
-             name="Listing[location]" 
-             class="form-control" 
-             required 
-             />
-            
+             placeholder="Delhi,India"
+              name="listing[location]" 
+              class="form-control" 
+              required />
+
+            <!-- here i give the failure text or else Invalid text -->
+            <div class="invalid-feedback">
+              Location should be valid.
+            </div>
           </div>
         </div>
 
         <div class="mb-3">
           <label for="countrey" class="form-label">Country</label>
           <input type="text" 
-          placeholder="India"
-           name="Listing[country]" 
+          placeholder="India" 
+          name="listing[country]"
            class="form-control" 
-           required 
-           />
-          
+           required />
+
+          <!-- here i give the failure text or else Invalid text -->
+          <div class="invalid-feedback">
+            Country should be valid.
+          </div>
+
         </div>
 
         <button class="btn btn-dark  mt-3">Add</button>
         <br /> <br />
       </form>
-      </div>
     </div>
-<script src="/js/script.js"></script>
+  </div>
+  <script src="/js/script.js"></script>
