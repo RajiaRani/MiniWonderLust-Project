@@ -120,6 +120,10 @@ app.delete("/listings/:id", wrapAsync(async (req, res) => {
 app.post("/listings/:id/reviews", async(req,res) => {
     let listing = await Listing.findById(req.body.id);
     let newReview = new Review ( req.body.review);
+    listing.reviews.push(newReview);
+
+    await newReview.save();
+    await listing.save();
 })
 
 // Error handling part
