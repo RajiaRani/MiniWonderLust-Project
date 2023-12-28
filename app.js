@@ -116,7 +116,9 @@ app.delete("/listings/:id", wrapAsync(async (req, res) => {
 
 //Reviews
 //Post Route
-
+app.post("/listings/:id/reviews", async(req,res) => {
+    
+})
 
 // Error handling part
 // app.use((err,req,res,next) => {
