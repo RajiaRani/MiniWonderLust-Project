@@ -124,6 +124,8 @@ app.post("/listings/:id/reviews", async(req,res) => {
 
     await newReview.save();
     await listing.save();
+    console.log("new ewview added.");
+    res.send("new review added!!");
 })
 
 // Error handling part
