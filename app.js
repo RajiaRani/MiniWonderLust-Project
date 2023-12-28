@@ -11,6 +11,7 @@ const ExpressError = require("./utils/ExpressError.js");
 
 const ejsMate = require("ejs-mate");
 const { wrap } = require("module");
+const { reverse } = require("dns");
 app.engine("ejs", ejsMate);
 
 app.set("view engine", "ejs");
@@ -118,6 +119,7 @@ app.delete("/listings/:id", wrapAsync(async (req, res) => {
 //Post Route
 app.post("/listings/:id/reviews", async(req,res) => {
     let listing = await Listing.findById(req.body.id);
+    let newReview = new Review ( req.body.review);
 })
 
 // Error handling part
