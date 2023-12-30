@@ -1,3 +1,4 @@
+//  ye javascript code bootstrap ka hai humne jab validate use kiya uske sath
 (() => {
     'use strict'
   
