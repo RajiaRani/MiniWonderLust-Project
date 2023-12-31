@@ -105,18 +105,19 @@ app.put("/listings/:id", wrapAsync(async (req, res) => {
 );
 
 //delete route
-app.delete("/listings/:id", async (req, res) => {
+app.delete("/listings/:id", wrapAsync(async (req, res) => {
    
     let { id } = req.params;
     await Listing.findByIdAndDelete(id);
     res.redirect("/listings");
    
-});
+})
+);
 
 
 //Reviews
 //Post Route
-app.post("/listings/:id/reviews", async(req,res) => {
+app.post("/listings/:id/reviews", wrapAsync(async(req,res) => {
     let listing = await Listing.findById(req.params.id);
     let newReview = new Review ( req.body.review);
     listing.reviews.push(newReview);
@@ -126,7 +127,7 @@ app.post("/listings/:id/reviews", async(req,res) => {
     console.log("new ewview added.");
     res.send("new review added!!");
 })
-
+);
 
 //STANDARD ERROR RESPONSE
 app.all("*", (req,res,next) => {
