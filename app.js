@@ -5,7 +5,6 @@ const path = require("path");
 const mongoose = require("mongoose");
 const Listing = require("./models/listing.js");
 const methodOverride = require("method-override");
-const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
 const ejsMate = require("ejs-mate");
 // const { wrap } = require("module");
