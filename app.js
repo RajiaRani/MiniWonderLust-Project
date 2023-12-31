@@ -63,14 +63,17 @@ app.get("/listings/:id", wrapAsync(async (req, res) => {
 
 
 //Step:4 Create route
-app.post("/listings", wrapAsync (async (req, res,next) => {
-  
-        const newListing = new Listing(req.body.listing);
-        await newListing.save();
-        res.redirect("/listings");
+app.post("/listings",async (req, res,next) => {
+  try{
+    const newListing = new Listing(req.body.listing);
+    await newListing.save();
+    res.redirect("/listings");
+  } catch  (err) {
+    next(err);
+  };
+ 
+});
 
-})
-);
 // app.post("/listings", async (req, res,next) => {
 //     //let {title, description, image, price, location, country} = req.body;
 //     //let listing = req.body;
