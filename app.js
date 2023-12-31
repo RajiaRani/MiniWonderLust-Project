@@ -63,7 +63,6 @@ app.get("/listings/:id", wrapAsync(async (req, res) => {
 
 
 //Step:4 Create route
-
 app.post("/listings", wrapAsync (async (req, res,next) => {
   
         const newListing = new Listing(req.body.listing);
@@ -134,14 +133,17 @@ app.post("/listings/:id/reviews", async(req,res) => {
 
 
 // Error handling part
+//app.all("*", (req,res,next) =>{ next(new ExpressError(404, "Page Not Found!!"));});
 
-app.all("*", (req,res,next) => {
-    next(new ExpressError(404, "Page Not Found!!"));
-});
+// app.use((req,res,next) => {
+//     let {statusCode = 505 , message = " Opps!! Sorry Something wents wrong!"} = err;
+//     res.status(statusCode).send(message);
+// });
 
-app.use((req,res,next) => {
-    let {statusCode = 505 , message = " Opps!! Sorry Something wents wrong!"} = err;
-    res.status(statusCode).send(message);
+
+//error
+app.use((err,req,res,next) => {
+    res.send("Something is wrong!");
 });
 
 //port
