@@ -133,10 +133,11 @@ app.post("/listings/:id/reviews", async(req,res) => {
 //STANDARD ERROR RESPONSE
 app.all("*", (req,res,next) => {
     next (new ExpressError (404, "Opps!! Page Not Found!"));
-})
+});
+
 //Error handling using ExpressError
 app.use((req,res,next)=> {
-    let {statusCode=401, message="Opps! Sorry Something wents wrong!!"} = err;
+    let {statusCode, message} = err;
     res.status(statusCode).send(message);
 });
 
