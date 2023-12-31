@@ -109,12 +109,16 @@ app.put("/listings/:id", wrapAsync(async (req, res) => {
 );
 
 //delete route
-app.delete("/listings/:id", wrapAsync(async (req, res) => {
-    let { id } = req.params;
+app.delete("/listings/:id", async (req, res) => {
+    try{
+        let { id } = req.params;
     await Listing.findByIdAndDelete(id);
     res.redirect("/listings");
-})
-);
+    } catch(err) {
+        next(err);
+    }
+});
+
 
 //Reviews
 //Post Route
