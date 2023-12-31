@@ -8,8 +8,9 @@ const methodOverride = require("method-override");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
 const ejsMate = require("ejs-mate");
-const { wrap } = require("module");
-const { reverse } = require("dns");
+// const { wrap } = require("module");
+// const { reverse } = require("dns");
+const wrapAsync = require("./utils/wrapAsync.js");
 //const {listingSchema} = require("./schema.js");
 const Review = require("./models/review.js");
 
