@@ -129,21 +129,11 @@ app.post("/listings/:id/reviews", async(req,res) => {
     res.send("new review added!!");
 })
 
-// Error handling part
-// app.use((err,req,res,next) => {
-//     res.send("something went wrong!!");
-// });
 
-
-// Error handling part
-//app.all("*", (req,res,next) =>{ next(new ExpressError(404, "Page Not Found!!"));});
-
-// app.use((req,res,next) => {
-//     let {statusCode = 505 , message = " Opps!! Sorry Something wents wrong!"} = err;
-//     res.status(statusCode).send(message);
-// });
 //STANDARD ERROR RESPONSE
-app.use("*", (req,res,next))
+app.all("*", (req,res,next) => {
+    next (new ExpressError (404, "Opps!! Page Not Found!"));
+})
 //Error handling using ExpressError
 app.use((req,res,next)=> {
     let {statusCode=401, message="Opps! Sorry Something wents wrong!!"} = err;
