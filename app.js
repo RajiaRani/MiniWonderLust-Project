@@ -143,11 +143,17 @@ app.post("/listings/:id/reviews", async(req,res) => {
 //     res.status(statusCode).send(message);
 // });
 
+//Error handling using ExpressError
+app.use((req,res,next)=> {
+    let {statusCode=401, message="Opps! Sorry Something wents wrong!!"} = err;
+    res.status(statusCode).send(message);
+});
 
 //error
-app.use((err,req,res,next) => {
-    res.send("Something is wrong!");
-});
+// app.use((err,req,res,next) => {
+//     res.send("Something is wrong!");
+// });
+
 
 //port
 app.listen(8080, () => {
