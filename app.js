@@ -142,7 +142,8 @@ app.post("/listings/:id/reviews", async(req,res) => {
 //     let {statusCode = 505 , message = " Opps!! Sorry Something wents wrong!"} = err;
 //     res.status(statusCode).send(message);
 // });
-
+//STANDARD ERROR RESPONSE
+app.use("*", (req,res,next))
 //Error handling using ExpressError
 app.use((req,res,next)=> {
     let {statusCode=401, message="Opps! Sorry Something wents wrong!!"} = err;
