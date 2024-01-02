@@ -104,7 +104,7 @@ app.put("/listings/:id", wrapAsync(async (req, res) => {
 })
 );
 
-//delete route
+//DELETE ROUTE
 app.delete("/listings/:id", wrapAsync(async (req, res) => {
    
     let { id } = req.params;
