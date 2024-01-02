@@ -136,7 +136,7 @@ app.all("*", (req,res,next) => {
 
 //Error handling using ExpressError
 app.use((req,res,next)=> {
-    let {statusCode, message} = err;
+    let {statusCode, message} = err; //get the error
     res.status(statusCode).send(message);
 });
 
