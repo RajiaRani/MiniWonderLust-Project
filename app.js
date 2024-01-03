@@ -145,7 +145,7 @@ app.all("*", (req,res,next) => {
 app.use((err,req,res,next)=> {
     let {statusCode, message} = err; //get the error
     //res.status(statusCode).send(message);
-    res.render("errors.ejs");
+    res.render("errors.ejs", {message});
 });
 
 //error
