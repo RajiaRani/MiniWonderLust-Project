@@ -1,6 +1,8 @@
+
+// Joi is used to validate a schema
 const Joi = require("joi");
 
-const listingSchema = Joi.object({
+module.exports.listingSchema = Joi.object({
     listing : Joi.object({
         title: Joi.string().required(),
         description: Joi.string().required(),
@@ -8,7 +10,7 @@ const listingSchema = Joi.object({
         country: Joi.string().required(),
         price: Joi.number().required().min(0),
         image: Joi.string().allow("", null),
-    }).required(),
+    }).required()
 });
 
-module.exports = listingSchema;
+// module.exports = listingSchema;

@@ -39,6 +39,21 @@ app.get("/", (req, res) => {
     res.send("Hi, I am root");
 });
 
+//validate listing schema- joi
+const validateListing = (req,res,next) => {
+    //let result = listingSchema.validate(req.body);
+   // console.log(result);
+   let {error} = listingSchema.validate(req.body);
+    if(error) {
+        throw new ExpressError(400,error);
+    } else {
+        next();
+    };
+};
+
+
+
+
 //step:1 index route
 app.get("/listings", wrapAsync(async (req, res,next) => {
     const allListing = await Listing.find({}); //collected all the data from mongodb
@@ -62,14 +77,16 @@ app.get("/listings/:id", wrapAsync(async (req, res,next) => {
 
 
 //Step:4 Create route
-app.post("/listings", wrapAsync(async (req, res,next) => {
+app.post(
+    "/listings",
+     validateListing,
+    wrapAsync(async (req, res,next) => {
   
     //agar request ki body ke andhar listing nhi hai tab bhi error ayega
     // if(!req.body.listing) {
     //     throw new ExpressError(400, "Send valid data for listing");
     // };
-    let result = listingSchema.validate(req.body);
-    console.log(result);
+
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings");
@@ -102,10 +119,13 @@ app.get("/listings/:id/edit", wrapAsync(async (req, res) => {
 );
 
 //update route
-app.put("/listings/:id", wrapAsync(async (req, res) => {
-    if(!req.body.listing){
-        throw new ExpressError(400,"Please send the valid data");
-    };
+app.put(
+    "/listings/:id",
+    validateListing,
+     wrapAsync(async (req, res) => {
+    // if(!req.body.listing){
+    //     throw new ExpressError(400,"Please send the valid data");
+    // };
     let { id } = req.params;
     await Listing.findByIdAndUpdate(id, { ...req.body.listing });
     res.redirect("/listings");
