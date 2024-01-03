@@ -64,6 +64,11 @@ app.get("/listings/:id", wrapAsync(async (req, res,next) => {
 //Step:4 Create route
 app.post("/listings", wrapAsync(async (req, res,next) => {
   
+    //agar request ki body ke andhar listing nhi hai tab bhi error ayega
+    if(!req.body.listing) {
+        throw new ExpressError(400, "Send valid data for listing");
+    };
+    
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings");
