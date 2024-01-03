@@ -9,7 +9,7 @@ const ejsMate = require("ejs-mate");
 // const { reverse } = require("dns");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
-//const {listingSchema} = require("./schema.js");
+const {listingSchema} = require("./schema.js");
 const Review = require("./models/review.js");
 
 app.engine("ejs", ejsMate);
@@ -65,10 +65,11 @@ app.get("/listings/:id", wrapAsync(async (req, res,next) => {
 app.post("/listings", wrapAsync(async (req, res,next) => {
   
     //agar request ki body ke andhar listing nhi hai tab bhi error ayega
-    if(!req.body.listing) {
-        throw new ExpressError(400, "Send valid data for listing");
-    };
-
+    // if(!req.body.listing) {
+    //     throw new ExpressError(400, "Send valid data for listing");
+    // };
+    let result = listingSchema.validate(req.body);
+    console.log(result);
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings");
