@@ -40,7 +40,7 @@ app.get("/", (req, res) => {
 });
 
 //step:1 index route
-app.get("/listings", wrapAsync(async (req, res) => {
+app.get("/listings", wrapAsync(async (req, res,next) => {
     const allListing = await Listing.find({}); //collected all the data from mongodb
     res.render("listing/index.ejs", { allListing });
 })
@@ -53,7 +53,7 @@ app.get("/listings/new", (req, res) => {
 
 
 //Step:2 show route
-app.get("/listings/:id", wrapAsync(async (req, res) => {
+app.get("/listings/:id", wrapAsync(async (req, res,next) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
     res.render("listing/show.ejs", { listing });
@@ -113,7 +113,6 @@ app.delete("/listings/:id", wrapAsync(async (req, res) => {
    
 })
 );
-
 
 //Reviews
 //Post Route
