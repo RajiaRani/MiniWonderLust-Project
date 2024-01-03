@@ -43,9 +43,11 @@ app.get("/", (req, res) => {
 const validateListing = (req,res,next) => {
     //let result = listingSchema.validate(req.body);
    // console.log(result);
+   //if(error){ throw new ExpressError (400, error);}
    let {error} = listingSchema.validate(req.body);
     if(error) {
-        throw new ExpressError(400,error);
+        let errMsg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(400,errMsg);
     } else {
         next();
     };
