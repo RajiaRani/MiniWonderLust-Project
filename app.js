@@ -147,7 +147,7 @@ app.delete("/listings/:id", wrapAsync(async (req, res) => {
 
 //Reviews
 //POST ROUTE
-app.post("/listings/:id/reviews", wrapAsync(async(req,res) => {
+app.post("/listings/:id/reviews",async(req,res) => {
     //access the listing means yaha se listing find karege
     let listing = await Listing.findById(req.params.id); 
     //created the new Review
@@ -158,8 +158,8 @@ app.post("/listings/:id/reviews", wrapAsync(async(req,res) => {
     await listing.save();
     console.log("new review saved");
     res.send("new review saved!");
-})
-);
+});
+
 
 //STANDARD ERROR RESPONSE
 app.all("*", (req,res,next) => {
