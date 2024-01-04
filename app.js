@@ -148,8 +148,10 @@ app.delete("/listings/:id", wrapAsync(async (req, res) => {
 //Reviews
 //POST ROUTE
 app.post("/listings/:id/reviews", wrapAsync(async(req,res) => {
-    let listing = await Listing.findById(req.params.id);
-    let newReview = new Review ( req.body.review);
+    //access the listing means yaha se listing find karege
+    let listing = await Listing.findById(req.params.id); 
+    //created the new Review
+    let newReview = new Review ( req.body.review); 
     listing.reviews.push(newReview);
 
     await newReview.save();
