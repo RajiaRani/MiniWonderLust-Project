@@ -156,8 +156,8 @@ app.post("/listings/:id/reviews", wrapAsync(async(req,res) => {
 
     await newReview.save();
     await listing.save();
-    console.log("new ewview added.");
-    res.send("new review added!!");
+    console.log("new review saved");
+    res.send("new review saved!");
 })
 );
 
