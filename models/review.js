@@ -14,6 +14,6 @@ const reviewSchema  = new Schema({
     },
 });
 
-//module.exports = mongoose.model("Review", reviewSchema);
-const Review = mongoose.model("Review", reviewSchema );
-module.exports = Review;
+module.exports = mongoose.model("Review", reviewSchema);
+// const Review = mongoose.model("Review", reviewSchema );
+// module.exports = Review;
