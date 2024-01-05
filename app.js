@@ -5,8 +5,6 @@ const mongoose = require("mongoose");
 const Listing = require("./models/listing.js");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
-// const { wrap } = require("module");
-// const { reverse } = require("dns");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
 const {listingSchema} = require("./schema.js");
@@ -160,8 +158,7 @@ app.post("/listings/:id/reviews", async (req,res) => {
     await listing.save();
     console.log("new review saved");
     res.send("new review saved!");
-    
-    
+ 
 });
 
 
