@@ -177,9 +177,9 @@ app.post("/listings/:id/reviews", async (req,res) => {
 // });
 
 //error
-app.use((err,req,res,next) => {
-   res.send("Something is wrong!");
-});
+// app.use((err,req,res,next) => {
+//    res.send("Something is wrong!");
+// });
 
 
 //port
