@@ -163,13 +163,15 @@ app.post("/listings/:id/reviews", async (req,res) => {
 
 //STANDARD ERROR RESPONSE
 app.all("*", (req,res,next) => {
+    console.log("404 middleware triggered");
     next (new ExpressError (404, "Opps!! Page Not Found!"));
  });
 
 //Error handling using ExpressError
- app.use((err,req,res,next)=> {
-     let {statusCode, message} = err; //get the error
-     res.status(statusCode).send(message);
+app.use((err, req, res, next) => {
+    let { statusCode, message } = err;
+    res.status(statusCode).send(message);
+
     //   res.render("errors.ejs", {message});
     //  res.render("errors.ejs",{err});
  });
