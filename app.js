@@ -172,8 +172,8 @@ app.post("/listings/:id/reviews", async (req,res) => {
  app.use((err,req,res,next)=> {
      let {statusCode, message} = err; //get the error
 //     res.status(statusCode).send(message);
-//     //res.render("errors.ejs", {message});
-     //res.render("errors.ejs",{err});
+      res.render("errors.ejs", {message});
+     res.render("errors.ejs",{err});
  });
 
 //error
