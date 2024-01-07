@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const reviewSchema  = new Schema({
+    //creating comment, rating and createdAt
     comment:String,
     rating: {
         type: Number,
