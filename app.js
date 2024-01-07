@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const Listing = require("./models/listing.js");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
-// const wrapAsync = require("./utils/wrapAsync.js");
+const wrapAsync = require("./utils/wrapAsync.js");
 // const ExpressError = require("./utils/ExpressError.js");
 // const {listingSchema} = require("./schema.js");
 // const Review = require("./models/review.js");
@@ -78,22 +78,18 @@ app.get("/listings/:id", async (req,res) => {
 
 //Step:4 Create route
 app.post(
-    "/listings",async (req,res,next) => {
+    "/listings", wrapAsync(async (req,res,next) => {
   
     //agar request ki body ke andhar listing nhi hai tab bhi error ayega
     // if(!req.body.listing) {
     //     throw new ExpressError(400, "Send valid data for listing");
     // };
 
-try{
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings");
-} catch(err){
-    next(err);
-}
-
 })
+);
 
 
 // app.post("/listings", async (req, res,next) => {
@@ -176,7 +172,7 @@ app.delete("/listings/:id", async (req,res) => {
 //  });
 
 //error
-app.use((err,req,res,next) => {
+ app.use((err,req,res,next) => {
     res.send("something is wrong!!");
 });
 
