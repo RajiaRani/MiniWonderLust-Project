@@ -5,7 +5,7 @@
 
       <h3>Create a new Listing:</h3>
 
-      <form method="POST" action="/listings"  class="needs-validation" novalidate>
+      <form method="POST" action="/listings" >
         <!--class="needs-validation" take from bootstrap-->
         <div class="mb-3"> <!-- mb = margin bottom3-->
           <label for="title" class="form-label">Title</label>
@@ -13,10 +13,11 @@
           placeholder="Add a catchy title" 
           name="listing[title]" 
           class="form-control" 
-          required />
-         <div class="valid-feedback">
+          required 
+          />
+         <!-- <div class="valid-feedback">
           Title looks good!
-         </div>
+         </div> -->
 
         </div>
         <div class="mb-3">
@@ -27,9 +28,9 @@
           </textarea>
           
           <!-- here i give the failure text or else Invalid text -->
-          <div class="invalid-feedback">
+          <!-- <div class="invalid-feedback">
             Description should be valid.
-          </div> 
+          </div>  -->
 
         </div>
 
@@ -54,9 +55,9 @@
             />
 
             <!-- here i give the failure text or else Invalid text -->
-            <div class="invalid-feedback">
+            <!-- <div class="invalid-feedback">
               Price should be valid.
-            </div>
+            </div> -->
           </div>
 
           <div class="mb-3   col-md-8">
@@ -65,12 +66,13 @@
              placeholder="Delhi,India"
               name="listing[location]" 
               class="form-control" 
-              required />
+              required 
+              />
 
             <!-- here i give the failure text or else Invalid text -->
-            <div class="invalid-feedback">
+            <!-- <div class="invalid-feedback">
               Location should be valid.
-            </div>
+            </div> -->
           </div>
         </div>
 
@@ -80,12 +82,13 @@
           placeholder="India" 
           name="listing[country]"
            class="form-control" 
-           required />
+           required 
+           />
 
           <!-- here i give the failure text or else Invalid text -->
-          <div class="invalid-feedback">
+          <!-- <div class="invalid-feedback">
             Country should be valid.
-          </div>
+          </div> -->
 
         </div>
 
