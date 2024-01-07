@@ -38,37 +38,37 @@ app.get("/", (req, res) => {
 });
 
 //validate listing schema- joi
-const validateListing = (req,res,next) => {
-    //let result = listingSchema.validate(req.body);
-   // console.log(result);
-   //if(error){ throw new ExpressError (400, error);}
-   let {error} = listingSchema.validate(req.body);
-    if(error) {
-        let errMsg = error.details.map((el) => el.message).join(",");
-        throw new ExpressError(400,errMsg);
-    } else {
-        next();
-    };
-};
+// const validateListing = (req,res,next) => {
+//     //let result = listingSchema.validate(req.body);
+//    // console.log(result);
+//    //if(error){ throw new ExpressError (400, error);}
+//    let {error} = listingSchema.validate(req.body);
+//     if(error) {
+//         let errMsg = error.details.map((el) => el.message).join(",");
+//         throw new ExpressError(400,errMsg);
+//     } else {
+//         next();
+//     };
+// };
 
 
 
 
 //step:1 index route
-app.get("/listings", wrapAsync(async (req, res,next) => {
+app.get("/listings", wrapAsync(async (req,res,next) => {
     const allListing = await Listing.find({}); //collected all the data from mongodb
     res.render("listing/index.ejs", { allListing });
 })
 );
 
 //Step:3 New Route
-app.get("/listings/new", (req, res) => {
+app.get("/listings/new", (req,res) => {
     res.render("listing/new.ejs");
 });
 
 
 //Step:2 show route
-app.get("/listings/:id", wrapAsync(async (req, res,next) => {
+app.get("/listings/:id", wrapAsync(async (req,res,next) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
     res.render("listing/show.ejs", { listing });
@@ -79,7 +79,6 @@ app.get("/listings/:id", wrapAsync(async (req, res,next) => {
 //Step:4 Create route
 app.post(
     "/listings",
-     validateListing,
     wrapAsync(async (req, res,next) => {
   
     //agar request ki body ke andhar listing nhi hai tab bhi error ayega
@@ -121,7 +120,6 @@ app.get("/listings/:id/edit", wrapAsync(async (req, res) => {
 //update route
 app.put(
     "/listings/:id",
-    validateListing,
      wrapAsync(async (req, res) => {
     // if(!req.body.listing){
     //     throw new ExpressError(400,"Please send the valid data");
