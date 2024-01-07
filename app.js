@@ -5,10 +5,10 @@ const mongoose = require("mongoose");
 const Listing = require("./models/listing.js");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
-const wrapAsync = require("./utils/wrapAsync.js");
-const ExpressError = require("./utils/ExpressError.js");
-const {listingSchema} = require("./schema.js");
-const Review = require("./models/review.js");
+// const wrapAsync = require("./utils/wrapAsync.js");
+// const ExpressError = require("./utils/ExpressError.js");
+// const {listingSchema} = require("./schema.js");
+// const Review = require("./models/review.js");
 
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
@@ -55,11 +55,11 @@ app.get("/", (req, res) => {
 
 
 //step:1 index route
-app.get("/listings", wrapAsync(async (req,res,next) => {
+app.get("/listings", async (req,res) => {
     const allListing = await Listing.find({}); //collected all the data from mongodb
     res.render("listing/index.ejs", { allListing });
 })
-);
+
 
 //Step:3 New Route
 app.get("/listings/new", (req,res) => {
@@ -68,18 +68,18 @@ app.get("/listings/new", (req,res) => {
 
 
 //Step:2 show route
-app.get("/listings/:id", wrapAsync(async (req,res,next) => {
+app.get("/listings/:id", async (req,res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
     res.render("listing/show.ejs", { listing });
 })
-);
+
 
 
 //Step:4 Create route
 app.post(
     "/listings",
-    wrapAsync(async (req,res,next) => {
+   async (req,res) => {
   
     //agar request ki body ke andhar listing nhi hai tab bhi error ayega
     // if(!req.body.listing) {
@@ -90,7 +90,7 @@ app.post(
     await newListing.save();
     res.redirect("/listings");
 })
-);
+
 
 // app.post("/listings", async (req, res,next) => {
 //     //let {title, description, image, price, location, country} = req.body;
@@ -109,18 +109,17 @@ app.post(
 
 
 //Edit route
-app.get("/listings/:id/edit", wrapAsync(async (req,res,next) => {
+app.get("/listings/:id/edit", async (req,res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
     res.render("listing/edit.ejs", { listing });
 
 })
-);
+
 
 //update route
 app.put(
-    "/listings/:id",
-     wrapAsync(async (req,res,next) => {
+    "/listings/:id",async (req,res) => {
     // if(!req.body.listing){
     //     throw new ExpressError(400,"Please send the valid data");
     // };
@@ -129,56 +128,53 @@ app.put(
     res.redirect("/listings");
     //res.redirect(`/listings/${id}`);
 })
-);
+
 
 //DELETE ROUTE
-app.delete("/listings/:id", wrapAsync(async (req,res,next) => {
+app.delete("/listings/:id", async (req,res) => {
    
     let { id } = req.params;
     await Listing.findByIdAndDelete(id);
     res.redirect("/listings");
    
 })
-);
+
 
 //Reviews
 //POST ROUTE
-app.post("/listings/:id/reviews", async (req,res) => {
-    //access the listing means yaha se listing find karege
-    let {id} = req.params;
-    let listing = await Listing.findById(id); 
-    //created the new Review
-    let newReview = new Review (req.body.review); 
-    listing.reviews.push(newReview);
+// app.post("/listings/:id/reviews", async (req,res) => {
+//     //access the listing means yaha se listing find karege
+//     let {id} = req.params;
+//     let listing = await Listing.findById(id); 
+//     //created the new Review
+//     let newReview = new Review (req.body.review); 
+//     listing.reviews.push(newReview);
 
-    await newReview.save();
-    await listing.save();
-    console.log("new review saved");
-    console.log(req.body);
-    res.send("new review saved!");
+//     await newReview.save();
+//     await listing.save();
+//     console.log("new review saved");
+//     console.log(req.body);
+//     res.send("new review saved!");
  
-});
+// });
 
 
 //STANDARD ERROR RESPONSE
-app.all("*", (req,res,next) => {
-    console.log("404 middleware triggered");
-    next (new ExpressError (404, "Opps!! Page Not Found!"));
- });
+// app.all("*", (req,res,next) => {
+//     console.log("404 middleware triggered");
+//     next (new ExpressError (404, "Opps!! Page Not Found!"));
+//  });
 
 //Error handling using ExpressError
-app.use((err, req, res, next) => {
-    let { statusCode, message } = err;
-    res.status(statusCode).send(message);
-
-    //   res.render("errors.ejs", {message});
-    //  res.render("errors.ejs",{err});
- });
+// app.use((err, req, res, next) => {
+//     let { statusCode, message } = err;
+//     res.status(statusCode).send(message);
+//  });
 
 //error
-// app.use((err,req,res,next) => {
-//    res.send("Something is wrong!");
-// });
+app.use((err,req,res,next) => {
+    res.send("something is wrong!!");
+});
 
 
 //port
