@@ -6,7 +6,7 @@ const Listing = require("./models/listing.js");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
-// const ExpressError = require("./utils/ExpressError.js");
+const ExpressError = require("./utils/ExpressError.js");
 // const {listingSchema} = require("./schema.js");
 // const Review = require("./models/review.js");
 
@@ -160,21 +160,21 @@ app.delete("/listings/:id", async (req,res) => {
 
 
 //STANDARD ERROR RESPONSE
-// app.all("*", (req,res,next) => {
-//     console.log("404 middleware triggered");
-//     next (new ExpressError (404, "Opps!! Page Not Found!"));
-//  });
+app.all("*", (req,res,next) => {
+    console.log("404 middleware triggered");
+     next (new ExpressError (404, "Opps!! Page Not Found!"));
+ });
 
 //Error handling using ExpressError
-// app.use((err, req, res, next) => {
-//     let { statusCode, message } = err;
-//     res.status(statusCode).send(message);
-//  });
+ app.use((err, req, res, next) => {
+   let { statusCode, message } = err;
+     res.status(statusCode).send(message);
+ });
 
 //error
- app.use((err,req,res,next) => {
-    res.send("something is wrong!!");
-});
+//  app.use((err,req,res,next) => {
+//     res.send("something is wrong!!");
+// });
 
 
 //port
