@@ -164,22 +164,22 @@ app.post("/listings/:id/reviews", async (req,res) => {
 
 
 //STANDARD ERROR RESPONSE
-app.all("*", (req,res,next) => {
-    next (new ExpressError (404, "Opps!! Page Not Found!"));
-});
+// app.all("*", (req,res,next) => {
+//     next (new ExpressError (404, "Opps!! Page Not Found!"));
+// });
 
 //Error handling using ExpressError
-app.use((err,req,res,next)=> {
-    let {statusCode, message} = err; //get the error
-    res.status(statusCode).send(message);
-    //res.render("errors.ejs", {message});
-    //res.render("errors.ejs",{err});
-});
+// app.use((err,req,res,next)=> {
+//     let {statusCode, message} = err; //get the error
+//     res.status(statusCode).send(message);
+//     //res.render("errors.ejs", {message});
+//     //res.render("errors.ejs",{err});
+// });
 
 //error
-// app.use((err,req,res,next) => {
-//     res.send("Something is wrong!");
-// });
+app.use((err,req,res,next) => {
+   res.send("Something is wrong!");
+});
 
 
 //port
