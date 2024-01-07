@@ -79,7 +79,7 @@ app.get("/listings/:id", wrapAsync(async (req,res,next) => {
 //Step:4 Create route
 app.post(
     "/listings",
-    wrapAsync(async (req, res,next) => {
+    wrapAsync(async (req,res,next) => {
   
     //agar request ki body ke andhar listing nhi hai tab bhi error ayega
     // if(!req.body.listing) {
@@ -109,7 +109,7 @@ app.post(
 
 
 //Edit route
-app.get("/listings/:id/edit", wrapAsync(async (req, res) => {
+app.get("/listings/:id/edit", wrapAsync(async (req,res,next) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
     res.render("listing/edit.ejs", { listing });
@@ -120,7 +120,7 @@ app.get("/listings/:id/edit", wrapAsync(async (req, res) => {
 //update route
 app.put(
     "/listings/:id",
-     wrapAsync(async (req, res) => {
+     wrapAsync(async (req,res,next) => {
     // if(!req.body.listing){
     //     throw new ExpressError(400,"Please send the valid data");
     // };
@@ -132,7 +132,7 @@ app.put(
 );
 
 //DELETE ROUTE
-app.delete("/listings/:id", wrapAsync(async (req, res) => {
+app.delete("/listings/:id", wrapAsync(async (req,res,next) => {
    
     let { id } = req.params;
     await Listing.findByIdAndDelete(id);
@@ -156,7 +156,6 @@ app.post("/listings/:id/reviews", async (req,res) => {
     console.log("new review saved");
     console.log(req.body);
     res.send("new review saved!");
-
  
 });
 
