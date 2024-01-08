@@ -63,8 +63,8 @@ app.get("/listings/:id", wrapAsync(async (req, res) => {
 //Step:4 Create route
 app.post(
     "/listings", wrapAsync(async (req, res, next) => {
-        let res = listingSchema.validate(req.body);
-        console.log(res);
+        let result = listingSchema.validate(req.body);
+        console.log(result);
         // if(!req.body.listing){
         //     throw new ExpressError(400, "Please enter the validate data.");
         // }
