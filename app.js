@@ -185,7 +185,7 @@ app.use((err, req, res, next) => {
     //res.status(statusCode).send(message);
     // res.render("errors.ejs");
     // res.status(statusCode).render("errors.ejs", {message });
-    res.status(statusCode).render("errors.ejs", { err });
+    res.status(statusCode).render("errors.ejs", {message});
 
 });
 
