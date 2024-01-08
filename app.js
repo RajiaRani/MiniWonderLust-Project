@@ -63,26 +63,7 @@ app.get("/listings/:id", wrapAsync(async (req, res) => {
 //Step:4 Create route
 app.post(
     "/listings", wrapAsync(async (req, res, next) => {
-    //  let result = listingSchema.validate(req.body);
-    //  console.log(result);
-        //agar request ki body ke andhar listing nhi hai tab bhi error ayega
-        // if(!req.body.listing){
-        //     throw new ExpressError(400,"send validate data for listing");
-        // };
-        const newListing = new Listing(req.body.listing);
-        // if(!newListing.description){
-        //     throw new ExpressError(400,"Description is missing");
-        // };
-
-        // if(!newListing.title){
-        //     throw new ExpressError(400,"Title is missing");
-        // };
-        // if(!newListing.location){
-        //     throw new ExpressError(400,"Location is missing");
-        // };
-        // if(!newListing.country){
-        //     throw new ExpressError(400,"Country is missing");
-        // };
+       const newListing = new Listing(req.body.listing);
         await newListing.save();
         res.redirect("/listings");
     })
