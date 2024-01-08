@@ -37,6 +37,7 @@ app.get("/", (req, res) => {
     res.send("Hi, I am root");
 });
 
+
 //validate listing schema- joi
  const validateListing = (req,res,next) => {
      //let result = listingSchema.validate(req.body);
@@ -45,7 +46,7 @@ app.get("/", (req, res) => {
     let {error} = listingSchema.validate(req.body);
     if(error) {
         // let errMsg = error.details.map((el) => el.message).join(",");
-       throw new ExpressError(400,errMsg);
+       throw new ExpressError(400,error);
    } else {
          next();
      };
@@ -184,8 +185,8 @@ app.use((err, req, res, next) => {
     let { statusCode = 500, message = "Something went wrong!!!" } = err;
     res.status(statusCode).send(message);
     //res.render("errors.ejs");
-     //res.status(statusCode).render("errors.ejs", {message });
-    //res.status(statusCode).render("errors.ejs", {message});
+    // res.status(statusCode).render("errors.ejs", {message });
+    res.status(statusCode).render("errors.ejs", { err});
 
 });
 
