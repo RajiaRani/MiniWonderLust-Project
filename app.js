@@ -166,8 +166,8 @@ app.delete("/listings/:id", wrapAsync(async (req, res) => {
 
      await newReview.save();
      await listing.save();
-//     console.log("new review saved");
-//     console.log(req.body);
+     console.log("new review saved");
+    console.log(req.body);
 //     res.send("new review saved!");
 
 // });
