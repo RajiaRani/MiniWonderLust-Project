@@ -170,7 +170,9 @@ app.all("*", (req,res,next) => {
 //Error handling using ExpressError
  app.use((err, req, res, next) => {
    let { statusCode = 500, message="Something went wrong!!!" } = err;
-     res.status(statusCode).send(message);
+    //res.status(statusCode).send(message);
+    res.render("error.ejs");
+
  });
 
 //error
