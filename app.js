@@ -156,7 +156,7 @@ app.delete("/listings/:id", wrapAsync(async (req, res) => {
 
 //Reviews
 //POST ROUTE
-// app.post("/listings/:id/reviews", async (req,res) => {
+ app.post("/listings/:id/reviews", async (req,res) => {
 //     //access the listing means yaha se listing find karege
 //     let {id} = req.params;
 //     let listing = await Listing.findById(id); 
