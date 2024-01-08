@@ -7,8 +7,8 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
-const { listingSchema } = require("./schema.js"); 
-const Review = require("./models/review.js");
+// const { listingSchema } = require("./schema.js"); 
+// const Review = require("./models/review.js");
 
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
@@ -97,7 +97,7 @@ app.get("/listings/:id/edit", wrapAsync(async (req, res) => {
 
 //update route
 app.put(
-    "/listings/:id",validateListing, wrapAsync(async (req, res) => {
+    "/listings/:id", wrapAsync(async (req, res) => {
         let { id } = req.params;
         await Listing.findByIdAndUpdate(id, { ...req.body.listing });
         res.redirect("/listings");
