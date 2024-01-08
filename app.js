@@ -98,9 +98,6 @@ app.get("/listings/:id/edit", wrapAsync(async (req, res) => {
 //update route
 app.put(
     "/listings/:id",validateListing, wrapAsync(async (req, res) => {
-        // if(!req.body.listing){
-        //     throw new ExpressError(400,"Please send the valid data");
-        // };
         let { id } = req.params;
         await Listing.findByIdAndUpdate(id, { ...req.body.listing });
         res.redirect("/listings");
@@ -121,21 +118,21 @@ app.delete("/listings/:id", wrapAsync(async (req, res) => {
 
 //Reviews
 //POST ROUTE
- app.post("/listings/:id/reviews", async (req,res) => {
-     //access the listing means yaha se listing find karege
-     let {id} = req.params;
-     let listing = await Listing.findById(id); 
-     //created the new Review
-    let newReview = new Review (req.body.review); 
-     listing.reviews.push(newReview);
+//  app.post("/listings/:id/reviews", async (req,res) => {
+//      //access the listing means yaha se listing find karege
+//      let {id} = req.params;
+//      let listing = await Listing.findById(id); 
+//      //created the new Review
+//     let newReview = new Review (req.body.review); 
+//      listing.reviews.push(newReview);
 
-     await newReview.save();
-     await listing.save();
-     console.log("new review saved");
-    console.log(req.body);
-    res.send("new review saved!");
+//      await newReview.save();
+//      await listing.save();
+//      console.log("new review saved");
+//     console.log(req.body);
+//     res.send("new review saved!");
 
- });
+//  });
 
 
 //STANDARD ERROR RESPONSE
