@@ -168,9 +168,9 @@ app.delete("/listings/:id", wrapAsync(async (req, res) => {
      await listing.save();
      console.log("new review saved");
     console.log(req.body);
-//     res.send("new review saved!");
+    res.send("new review saved!");
 
-// });
+ });
 
 
 //STANDARD ERROR RESPONSE
