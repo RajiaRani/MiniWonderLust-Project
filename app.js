@@ -90,8 +90,8 @@ app.post(
         throw new ExpressError(400,"Description is missing");
     };
 
-    if(!newListing.price){
-        throw new ExpressError(400,"Price is missing");
+    if(!newListing.title){
+        throw new ExpressError(400,"Title is missing");
     };
     if(!newListing.location){
         throw new ExpressError(400,"Location is missing");
