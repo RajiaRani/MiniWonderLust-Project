@@ -44,6 +44,7 @@ app.get("/", (req, res) => {
     // console.log(result);
    //if(error){ throw new ExpressError (400, error);}
     let {error} = listingSchema.validate(req.body);
+    console.log(error);
     if(error) {
         // let errMsg = error.details.map((el) => el.message).join(",");
        throw new ExpressError(400,error);
