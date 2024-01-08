@@ -7,7 +7,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
-// const { listingSchema } = require("./schema.js"); 
+const { listingSchema } = require("./schema.js"); 
 // const Review = require("./models/review.js");
 
 app.engine("ejs", ejsMate);
@@ -67,6 +67,11 @@ app.post(
             throw new ExpressError(400, "Please enter the validate data.");
         }
        const newListing = new Listing(req.body.listing);
+
+    //    if(!newListing.description){
+    //     throw new ExpressError(400,"description is missing!!");
+    //    }
+
         await newListing.save();
         res.redirect("/listings");
     })
