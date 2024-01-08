@@ -44,7 +44,7 @@ app.get("/", (req, res) => {
    //if(error){ throw new ExpressError (400, error);}
     let {error} = listingSchema.validate(req.body);
     if(error) {
-        let errMsg = error.details.map((el) => el.message).join(",");
+        // let errMsg = error.details.map((el) => el.message).join(",");
        throw new ExpressError(400,errMsg);
    } else {
          next();
@@ -182,10 +182,10 @@ app.all("*", (req, res, next) => {
 //Error handling using ExpressError
 app.use((err, req, res, next) => {
     let { statusCode = 500, message = "Something went wrong!!!" } = err;
-    //res.status(statusCode).send(message);
-    // res.render("errors.ejs");
-    // res.status(statusCode).render("errors.ejs", {message });
-    res.status(statusCode).render("errors.ejs", {message});
+    res.status(statusCode).send(message);
+    //res.render("errors.ejs");
+     //res.status(statusCode).render("errors.ejs", {message });
+    //res.status(statusCode).render("errors.ejs", {message});
 
 });
 
