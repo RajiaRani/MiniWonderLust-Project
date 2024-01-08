@@ -7,7 +7,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
-// const {listingSchema} = require("./schema.js");
+const {listingSchema} = require("./schema.js");
 // const Review = require("./models/review.js");
 
 app.engine("ejs", ejsMate);
