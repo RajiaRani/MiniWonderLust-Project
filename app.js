@@ -63,6 +63,9 @@ app.get("/listings/:id", wrapAsync(async (req, res) => {
 //Step:4 Create route
 app.post(
     "/listings", wrapAsync(async (req, res, next) => {
+        if(!req.body.listing){
+            throw new ExpressError(400, "Please enter the validate data.");
+        }
        const newListing = new Listing(req.body.listing);
         await newListing.save();
         res.redirect("/listings");
@@ -144,8 +147,8 @@ app.all("*", (req, res, next) => {
 //Error handling using ExpressError
 app.use((err, req, res, next) => {
     let { statusCode = 500, message = "Something went wrong!!!" } = err;
-    res.status(statusCode).send(message);
-    //res.render("errors.ejs");
+    //res.status(statusCode).send(message);
+    res.render("errors.ejs", {message});
     //res.status(statusCode).render("errors.ejs", {message });
    // res.status(statusCode).render("errors.ejs", {err});
 
