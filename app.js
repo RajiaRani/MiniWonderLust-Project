@@ -79,9 +79,8 @@ app.get("/listings/:id", wrapAsync(async (req, res) => {
 
 //Step:4 Create route
 app.post(
-    "/listings", wrapAsync(async (req, res, next) => {
-        //    let result = listingSchema.validate(req.body);
-        //    console.log(result);
+    "/listings", validateListing, wrapAsync(async (req, res, next) => {
+    
         //agar request ki body ke andhar listing nhi hai tab bhi error ayega
         // if(!req.body.listing){
         //     throw new ExpressError(400,"send validate data for listing");
@@ -133,7 +132,7 @@ app.get("/listings/:id/edit", wrapAsync(async (req, res) => {
 
 //update route
 app.put(
-    "/listings/:id", wrapAsync(async (req, res) => {
+    "/listings/:id",validateListing, wrapAsync(async (req, res) => {
         // if(!req.body.listing){
         //     throw new ExpressError(400,"Please send the valid data");
         // };
