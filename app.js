@@ -161,8 +161,8 @@ app.delete("/listings/:id", wrapAsync(async (req, res) => {
      let {id} = req.params;
      let listing = await Listing.findById(id); 
      //created the new Review
-//     let newReview = new Review (req.body.review); 
-//     listing.reviews.push(newReview);
+    let newReview = new Review (req.body.review); 
+     listing.reviews.push(newReview);
 
 //     await newReview.save();
 //     await listing.save();
