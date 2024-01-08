@@ -37,25 +37,6 @@ app.get("/", (req, res) => {
     res.send("Hi, I am root");
 });
 
-
-//validate listing schema- joi
- const validateListing = (req,res,next) => {
-     //let result = listingSchema.validate(req.body);
-    // console.log(result);
-   //if(error){ throw new ExpressError (400, error);}
-    let {error} = listingSchema.validate(req.body);
-    //console.log(error);
-    if(error) {
-        // let errMsg = error.details.map((el) => el.message).join(",");
-       throw new ExpressError(400,error);
-   } else {
-         next();
-     };
- };
-
-
-
-
 //step:1 index route
 app.get("/listings", wrapAsync(async (req, res) => {
     const allListing = await Listing.find({}); //collected all the data from mongodb
@@ -82,8 +63,8 @@ app.get("/listings/:id", wrapAsync(async (req, res) => {
 //Step:4 Create route
 app.post(
     "/listings", wrapAsync(async (req, res, next) => {
-     let result = listingSchema.validate(req.body);
-     console.log(result);
+    //  let result = listingSchema.validate(req.body);
+    //  console.log(result);
         //agar request ki body ke andhar listing nhi hai tab bhi error ayega
         // if(!req.body.listing){
         //     throw new ExpressError(400,"send validate data for listing");
@@ -187,7 +168,7 @@ app.use((err, req, res, next) => {
     let { statusCode = 500, message = "Something went wrong!!!" } = err;
     res.status(statusCode).send(message);
     //res.render("errors.ejs");
-    res.status(statusCode).render("errors.ejs", {message });
+    //res.status(statusCode).render("errors.ejs", {message });
    // res.status(statusCode).render("errors.ejs", {err});
 
 });
