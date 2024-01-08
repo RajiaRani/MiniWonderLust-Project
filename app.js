@@ -85,8 +85,20 @@ app.post(
     if(!req.body.listing){
         throw new ExpressError(400,"send validate data for listing");
     };
-
     const newListing = new Listing(req.body.listing);
+    if(!newListing.description){
+        throw new ExpressError(400,"Description is missing");
+    };
+
+    if(!newListing.price){
+        throw new ExpressError(400,"Price is missing");
+    };
+    if(!newListing.location){
+        throw new ExpressError(400,"Location is missing");
+    };
+    if(!newListing.country){
+        throw new ExpressError(400,"Country is missing");
+    };
     await newListing.save();
     res.redirect("/listings");
 })
