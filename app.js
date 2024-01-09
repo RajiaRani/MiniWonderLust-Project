@@ -152,7 +152,6 @@ app.post("/listings/:id/reviews", async (req, res) => {
 
     // Create a new Review based on req.body.reviews
     let newReview = new Review(req.body.reviews);
-
     // Push the new review to the listing's reviews array
     listing.reviews.push(newReview);
 
@@ -165,11 +164,7 @@ app.post("/listings/:id/reviews", async (req, res) => {
     res.send("New review saved!");
 });
 
-app.get("/listings/:id/reviews", async(req,res) => {
-    let { id } = req.params;
-    let listing = await Listing.findById(id);
-    res.render("listing/review.ejs", {listing});
-});
+
 
 
 //STANDARD ERROR RESPONSE
