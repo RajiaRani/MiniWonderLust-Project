@@ -166,7 +166,8 @@ app.post("/listings/:id/reviews", async (req, res) => {
 });
 
 app.get("/listings/reviews", async(req,res) => {
-    let { id } = req.body;
+    let { id } = req.params;
+    let listing = await Listing.findById(id);
 });
 
 
