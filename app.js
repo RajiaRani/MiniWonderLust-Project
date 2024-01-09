@@ -58,8 +58,12 @@ const validateReview = ((req,res,next)=> {
     if(error) {
         let errMsg = error.details.map((el) => el.messagae).join(",");
         throw new ExpressError (400, error);
-    }
-})
+    } else {
+        next();
+    };
+});
+
+
 //step:1 index route
 app.get("/listings",  wrapAsync(async (req, res) => {
     const allListing = await Listing.find({}); //collected all the data from mongodb
