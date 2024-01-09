@@ -56,6 +56,7 @@ const validateListing = (req,res,next) => {
 const validateReview = ((req,res,next)=> {
     let {error} = reviewSchema.validate(req.body);
     if(error) {
+        let errMsg = error.details.map((el) => el.messagae).join(",");
         throw new ExpressError (400, error);
     }
 })
