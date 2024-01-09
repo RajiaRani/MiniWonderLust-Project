@@ -3,7 +3,7 @@ const app = express();
 const router = extpress.Router;
 
 //step:1 index route
-app.get("/listings",  wrapAsync(async (req, res) => {
+router.get("/listings",  wrapAsync(async (req, res) => {
     const allListing = await Listing.find({}); //collected all the data from mongodb
     res.render("listing/index.ejs", { allListing });
 })
@@ -11,12 +11,12 @@ app.get("/listings",  wrapAsync(async (req, res) => {
 
 
 //Step:3 New Route
-app.get("/listings/new", (req, res) => {
+router.get("/listings/new", (req, res) => {
     res.render("listing/new.ejs");
 });
 
 //Step:2 show route
-app.get("/listings/:id", wrapAsync(async (req, res) => {
+router.get("/listings/:id", wrapAsync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id).populate("reviews");
     res.render("listing/show.ejs", { listing });
@@ -25,7 +25,7 @@ app.get("/listings/:id", wrapAsync(async (req, res) => {
 
 
 //Step:4 Create route
-app.post(
+router.post(
     "/listings", validateListing , wrapAsync(async (req, res, next) => {
         // let result = listingSchema.validate(req.body);
         // console.log(result);
@@ -65,7 +65,7 @@ app.post(
 
 
 //Edit route
-app.get("/listings/:id/edit", wrapAsync(async (req, res) => {
+router.get("/listings/:id/edit", wrapAsync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
     res.render("listing/edit.ejs", { listing });
@@ -74,7 +74,7 @@ app.get("/listings/:id/edit", wrapAsync(async (req, res) => {
 );
 
 //update route
-app.put(
+router.put(
     "/listings/:id", validateListing, wrapAsync(async (req, res) => {
         let { id } = req.params;
         await Listing.findByIdAndUpdate(id, { ...req.body.listing });
@@ -84,7 +84,7 @@ app.put(
 );
 
 //DELETE ROUTE
-app.delete("/listings/:id", wrapAsync(async (req, res) => {
+router.delete("/listings/:id", wrapAsync(async (req, res) => {
 
     let { id } = req.params;
     await Listing.findByIdAndDelete(id);
