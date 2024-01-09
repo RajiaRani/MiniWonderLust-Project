@@ -50,7 +50,7 @@ const validateListing = (req,res,next) => {
 
 
 //step:1 index route
-app.get("/listings", wrapAsync(async (req, res) => {
+app.get("/listings", validateListing, wrapAsync(async (req, res) => {
     const allListing = await Listing.find({}); //collected all the data from mongodb
     res.render("listing/index.ejs", { allListing });
 })
@@ -74,7 +74,7 @@ app.get("/listings/:id", wrapAsync(async (req, res) => {
 
 //Step:4 Create route
 app.post(
-    "/listings", wrapAsync(async (req, res, next) => {
+    "/listings",validateListing, wrapAsync(async (req, res, next) => {
         let result = listingSchema.validate(req.body);
         console.log(result);
         if(result.error){
@@ -122,7 +122,7 @@ app.get("/listings/:id/edit", wrapAsync(async (req, res) => {
 
 //update route
 app.put(
-    "/listings/:id", wrapAsync(async (req, res) => {
+    "/listings/:id", validateListing, wrapAsync(async (req, res) => {
         let { id } = req.params;
         await Listing.findByIdAndUpdate(id, { ...req.body.listing });
         res.redirect("/listings");
