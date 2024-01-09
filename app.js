@@ -53,8 +53,9 @@ const validateListing = (req,res,next) => {
 };
 
 //validate Review Schema
-
-
+const validateReview = ((req,res,next)=> {
+    let {error} = reviewSchema.validate(req.body);
+})
 //step:1 index route
 app.get("/listings",  wrapAsync(async (req, res) => {
     const allListing = await Listing.find({}); //collected all the data from mongodb
