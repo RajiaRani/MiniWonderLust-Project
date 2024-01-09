@@ -62,7 +62,15 @@
         <p><b>All Reviews</b></p>
 
         <% for ( review of listing.reviews) { %>
-        
+            <div class="card">
+                <div class="card-body">
+                     <h5 class="card-title">
+                       Harry Doe
+                     </h5>
+                     <p class="card-text"> <%= review.comment %></p>
+                     <p class="card-text"> <%= review.rating %></p>
+                </div>
+            </div>
             <% } %>
     </div>
     </div>
