@@ -101,3 +101,8 @@
     padding-left: 0;
     padding-right: 0;
 }
+.btn-dark{
+    background-color: #343a40;
+    color: #ffffff;
+    border-radius: 0.5em;
+}
