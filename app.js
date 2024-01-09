@@ -165,7 +165,9 @@ app.post("/listings/:id/reviews", async (req, res) => {
     res.send("New review saved!");
 });
 
-app.get("/listings/reviews")
+app.get("/listings/reviews", async(req,res) => {
+    
+}) 
 
 
 //STANDARD ERROR RESPONSE
