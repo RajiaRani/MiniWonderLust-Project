@@ -145,7 +145,7 @@ app.delete("/listings/:id", wrapAsync(async (req, res) => {
 
 //Reviews
 //POST ROUTE
-app.post("/listings/:id/reviews", async (req, res) => {
+app.post("/listings/:id/reviews", wrapAsync(async (req, res) => {
     // Access the listing (find by ID)
     let { id } = req.params;
     let listing = await Listing.findById(id);
@@ -161,8 +161,10 @@ app.post("/listings/:id/reviews", async (req, res) => {
 
     console.log("New review saved");
     console.log(req.body);
-    res.send("New review saved!");
-});
+    //res.send("New review saved!");
+    console.log(listing);
+})
+);
 
 
 
