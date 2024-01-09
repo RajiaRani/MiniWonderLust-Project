@@ -159,9 +159,9 @@ app.post("/listings/:id/reviews", wrapAsync(async (req, res) => {
     await newReview.save();
     await listing.save();
 
-    console.log("New review saved");
-    console.log(req.body);
-    res.send("New review saved!");
+    // console.log("New review saved");
+    // console.log(req.body);
+    // res.send("New review saved!");
     //console.log(listing);
 
     //redirect to the show page itself
