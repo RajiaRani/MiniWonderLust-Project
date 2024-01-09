@@ -144,15 +144,15 @@ app.delete("/listings/:id", wrapAsync(async (req, res) => {
 
 //Reviews
 //POST ROUTE
-//  app.post("/listings/:id/reviews", async (req,res) => {
-//      //access the listing means yaha se listing find karege
-//      let {id} = req.params;
-//      let listing = await Listing.findById(id); 
-//      //created the new Review
-//     let newReview = new Review (req.body.review); 
-//      listing.reviews.push(newReview);
+  app.post("/listings/:id/reviews", async (req,res) => {
+      //access the listing means yaha se listing find karege
+     let {id} = req.params;
+     let listing = await Listing.findById(id); 
+      //created the new Review
+    let newReview = new Review (req.body.review); 
+      listing.reviews.push(newReview);
 
-//      await newReview.save();
+     await newReview.save();
 //      await listing.save();
 //      console.log("new review saved");
 //     console.log(req.body);
@@ -166,6 +166,7 @@ app.all("*", (req, res, next) => {
     //console.log("404 middleware triggered");
     next(new ExpressError(404, "Opps!! Page Not Found!"));
 });
+
 
 //Error handling using ExpressError
 app.use((err, req, res, next) => {
