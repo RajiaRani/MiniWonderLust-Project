@@ -187,8 +187,13 @@ app.post("/listings/:id/reviews",
 
 //Delete Review Route
 app.delete("/listings/:id/reviews/:reviewId", wrapAsync(async(req,res)=> {
-    let {id, reviewId} = req.params;
-}))
+    let {id} = req.params; //extracts the listing id
+    let { reviewId} = req.params; //extracts the reviews id
+    
+
+    res.redirect(`/listing/${id}`);
+})
+);
 
 
 
