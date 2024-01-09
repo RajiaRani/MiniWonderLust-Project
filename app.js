@@ -165,7 +165,7 @@ app.post("/listings/:id/reviews", wrapAsync(async (req, res) => {
     //console.log(listing);
 
     //redirect to the show page itself
-    res.redirect(`/listings/${listing_id}`);
+    res.redirect(`/listings/${listing._id}`);
 })
 );
 
