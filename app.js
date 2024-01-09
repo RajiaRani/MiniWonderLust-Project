@@ -55,6 +55,9 @@ const validateListing = (req,res,next) => {
 //validate Review Schema
 const validateReview = ((req,res,next)=> {
     let {error} = reviewSchema.validate(req.body);
+    if(error) {
+        throw new ExpressError (400, error);
+    }
 })
 //step:1 index route
 app.get("/listings",  wrapAsync(async (req, res) => {
