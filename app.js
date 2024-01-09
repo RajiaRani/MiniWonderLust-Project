@@ -26,7 +26,7 @@ main()
     .catch((err) => {
         console.log(err);
     });
-    
+
 async function main() {
     await mongoose.connect(mongoURL);
 };
@@ -165,6 +165,7 @@ app.post("/listings/:id/reviews", async (req, res) => {
     res.send("New review saved!");
 });
 
+app.get("/listings/reviews")
 
 
 //STANDARD ERROR RESPONSE
