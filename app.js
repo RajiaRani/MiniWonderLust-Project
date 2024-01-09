@@ -52,6 +52,8 @@ const validateListing = (req,res,next) => {
     };
 };
 
+//validate Review Schema
+
 
 //step:1 index route
 app.get("/listings",  wrapAsync(async (req, res) => {
