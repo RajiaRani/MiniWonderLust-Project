@@ -37,6 +37,18 @@ app.get("/", (req, res) => {
     res.send("Hi, I am root");
 });
 
+//Validate Listing function
+const validateListing = (req,res,next) => {
+    let {error} = listingSchema.validate(req.body);
+    //agar error exist karta hai to
+    if(error) {
+        throw new ExpressError(400, error);
+    } else{
+        next();
+    };
+};
+
+
 //step:1 index route
 app.get("/listings", wrapAsync(async (req, res) => {
     const allListing = await Listing.find({}); //collected all the data from mongodb
@@ -65,6 +77,9 @@ app.post(
     "/listings", wrapAsync(async (req, res, next) => {
         let result = listingSchema.validate(req.body);
         console.log(result);
+        if(result.error){
+            throw new ExpressError(400,result.error);
+        } 
         // if(!req.body.listing){
         //     throw new ExpressError(400, "Please enter the validate data.");
         // }
