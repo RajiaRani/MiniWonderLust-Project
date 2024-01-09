@@ -51,7 +51,7 @@ const validateListing = (req,res,next) => {
 
 
 //step:1 index route
-app.get("/listings", validateListing, wrapAsync(async (req, res) => {
+app.get("/listings",  wrapAsync(async (req, res) => {
     const allListing = await Listing.find({}); //collected all the data from mongodb
     res.render("listing/index.ejs", { allListing });
 })
@@ -75,12 +75,12 @@ app.get("/listings/:id", wrapAsync(async (req, res) => {
 
 //Step:4 Create route
 app.post(
-    "/listings",validateListing, wrapAsync(async (req, res, next) => {
-        let result = listingSchema.validate(req.body);
-        console.log(result);
-        if(result.error){
-            throw new ExpressError(400,result.error);
-        } 
+    "/listings", validateListing , wrapAsync(async (req, res, next) => {
+        // let result = listingSchema.validate(req.body);
+        // console.log(result);
+        // if(result.error){
+        //     throw new ExpressError(400,result.error);
+        // } 
         // if(!req.body.listing){
         //     throw new ExpressError(400, "Please enter the validate data.");
         // }
