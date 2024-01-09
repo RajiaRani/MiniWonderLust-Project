@@ -39,7 +39,8 @@ app.get("/", (req, res) => {
     res.send("Hi, I am root");
 });
 
-//Validate Listing function
+
+//Validate Listing Schema
 const validateListing = (req,res,next) => {
     let {error} = listingSchema.validate(req.body);
     //agar error exist karta hai to
