@@ -9,7 +9,7 @@
     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 "> <!--row use karne se hamara content row mein aa jayega-->
         <% for(let listing of allListing){ %>
            <a href="/listings/<%= listing._id %>"  class="listing-link">
-             <div class="card col" > <!--cards ko columns mein arrange kar dege -->
+             <div class="card col listing-card" > <!--cards ko columns mein arrange kar dege -->
                 <img src="<%= listing.image %>" class="card-img-top" alt="...">
 
                 <div class="card-img-overlay"></div>
