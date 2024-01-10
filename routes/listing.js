@@ -1,9 +1,26 @@
 const express = require("express");
-const app = express();
-const router = extpress.Router;
+const router = express.Router();
+const Listing = require("../models/listing.js");//change the path  according to their path
+const wrapAsync = require("../utils/wrapAsync.js");
+const ExpressError = require("../utils/ExpressError.js");
+const { listingSchema } = require("../schema.js"); 
+
+
+
+//Validate Listing Schema
+const validateListing = (req,res,next) => {
+    let {error} = listingSchema.validate(req.body);
+    //agar error exist karta hai to
+    if(error) {
+        let errMsg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(400,errMsg);
+    } else{
+        next();
+    };
+};
 
 //step:1 index route
-router.get("/listings",  wrapAsync(async (req, res) => {
+router.get("/",  wrapAsync(async (req, res) => {
     const allListing = await Listing.find({}); //collected all the data from mongodb
     res.render("listing/index.ejs", { allListing });
 })
@@ -11,12 +28,12 @@ router.get("/listings",  wrapAsync(async (req, res) => {
 
 
 //Step:3 New Route
-router.get("/listings/new", (req, res) => {
+router.get("/new", (req, res) => {
     res.render("listing/new.ejs");
 });
 
 //Step:2 show route
-router.get("/listings/:id", wrapAsync(async (req, res) => {
+router.get("/:id", wrapAsync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id).populate("reviews");
     res.render("listing/show.ejs", { listing });
@@ -26,7 +43,7 @@ router.get("/listings/:id", wrapAsync(async (req, res) => {
 
 //Step:4 Create route
 router.post(
-    "/listings", validateListing , wrapAsync(async (req, res, next) => {
+    "/", validateListing , wrapAsync(async (req, res, next) => {
         // let result = listingSchema.validate(req.body);
         // console.log(result);
         // if(result.error){
@@ -65,7 +82,7 @@ router.post(
 
 
 //Edit route
-router.get("/listings/:id/edit", wrapAsync(async (req, res) => {
+router.get("/:id/edit", wrapAsync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
     res.render("listing/edit.ejs", { listing });
@@ -75,7 +92,7 @@ router.get("/listings/:id/edit", wrapAsync(async (req, res) => {
 
 //update route
 router.put(
-    "/listings/:id", validateListing, wrapAsync(async (req, res) => {
+    "/:id", validateListing, wrapAsync(async (req, res) => {
         let { id } = req.params;
         await Listing.findByIdAndUpdate(id, { ...req.body.listing });
         res.redirect("/listings");
@@ -84,7 +101,7 @@ router.put(
 );
 
 //DELETE ROUTE
-router.delete("/listings/:id", wrapAsync(async (req, res) => {
+router.delete("/:id", wrapAsync(async (req, res) => {
 
     let { id } = req.params;
     await Listing.findByIdAndDelete(id);
@@ -92,3 +109,5 @@ router.delete("/listings/:id", wrapAsync(async (req, res) => {
 
 })
 );
+
+module.exports = router;
