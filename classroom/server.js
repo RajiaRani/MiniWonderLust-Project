@@ -12,8 +12,10 @@ app.use(expressSession(sessionOptions));
 
 app.get("/register", (req,res) => {
     let {name} = req.query;
+    console.log(`before name variable ${req.session}`);
     req.session.name =name;
-    console.log(name);
+    console.log(req.session.name);
+    console.log(`after name ${req.session}`)
     res.send(name);
 })
 
