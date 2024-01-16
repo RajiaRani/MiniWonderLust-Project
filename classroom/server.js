@@ -2,7 +2,11 @@ const express = require("express");
 const app = express();
 const expressSession = require("express-session");
 
-app.use(expressSession({secret:"mysupersecretstring"}));
+app.use(expressSession({
+    secret:"mysupersecretstring", 
+    resave:false, 
+    saveUninitialized:true})
+    );
 
 app.get("/reqcount",(req,res) => {
     res.send("you sent a request x times");
