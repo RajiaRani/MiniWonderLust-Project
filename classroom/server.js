@@ -16,7 +16,8 @@ app.get("/register", (req,res) => {
     req.session.name =name;
     console.log(req.session.name);
     console.log(`after`,req.session);
-    res.send(name);
+    // res.send(name);
+    res.redirect("/greets");
 });
 
 app.get("/greets", (req,res) => {
