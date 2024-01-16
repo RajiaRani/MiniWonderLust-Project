@@ -31,7 +31,9 @@ app.get("/greets", (req,res) => {
     res.send(`Hello,${req.session.name}`);
 });
 
-
+app.get("/age", (req,res) => {
+    
+})
 // app.get("/reqcount",(req,res) => {
     
 //     if( req.session.count){
