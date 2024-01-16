@@ -9,14 +9,13 @@ app.use(expressSession({
     );
 
 app.get("/reqcount",(req,res) => {
-    let req_count = req.session.count;
     
-    if(req_count){
-        req_count++;
+    if( req.session.count){
+        req.session.count++;
     } else{
-        req_count = 1;
+        req.session.count = 1;
     }
-    res.send(`You sent the request ${req_count} times`);
+    res.send(`You sent the request ${req.session.count} times`);
 });
 
 // app.get("/test", (req,res)=> {
