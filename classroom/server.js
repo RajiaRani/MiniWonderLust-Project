@@ -17,7 +17,11 @@ app.get("/register", (req,res) => {
     console.log(req.session.name);
     console.log(`after`,req.session);
     res.send(name);
-})
+});
+
+app.get("/greets", (req,res) => {
+    res.send(`Hello,${name}`);
+});
 
 
 // app.get("/reqcount",(req,res) => {
