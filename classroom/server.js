@@ -2,21 +2,26 @@ const express = require("express");
 const app = express();
 const expressSession = require("express-session");
 
-app.use(expressSession({
+const sessionOptions = {
     secret:"mysupersecretstring", 
     resave:false, 
-    saveUninitialized:true})
+    saveUninitialized:true
+};
+
+app.use(expressSession(sessionOptions)
     );
 
-app.get("/reqcount",(req,res) => {
+
+
+// app.get("/reqcount",(req,res) => {
     
-    if( req.session.count){
-        req.session.count++;
-    } else{
-        req.session.count = 1;
-    }
-    res.send(`You sent the request ${req.session.count} times`);
-});
+//     if( req.session.count){
+//         req.session.count++;
+//     } else{
+//         req.session.count = 1;
+//     }
+//     res.send(`You sent the request ${req.session.count} times`);
+// });
 
 // app.get("/test", (req,res)=> {
 //     res.send("test successfull");
