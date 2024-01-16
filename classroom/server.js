@@ -19,9 +19,16 @@ app.get("/register", (req,res) => {
     // res.send(name);
     res.redirect("/greets");
 });
+app.get("/age",(req,res) => {
+    let {age = "none"} = req.query;
+    req.session.age = age;
+    console.log(req.session.age);
+    res.redirect("/greets");
+
+});
 
 app.get("/greets", (req,res) => {
-    res.send(`Hello,${req.session.name}`);
+    res.send(`Hello,${req.session.name} your age is ${req.session.age}`);
 });
 
 
