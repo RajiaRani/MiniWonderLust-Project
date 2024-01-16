@@ -10,6 +10,10 @@ const sessionOptions = {
 
 app.use(expressSession(sessionOptions));
 
+app.get("/register", (req,res) => {
+    let {name} = req.query;
+    res.send(name);
+})
 
 
 // app.get("/reqcount",(req,res) => {
