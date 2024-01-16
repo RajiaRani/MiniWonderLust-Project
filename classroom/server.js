@@ -8,8 +8,7 @@ const sessionOptions = {
     saveUninitialized:true
 };
 
-app.use(expressSession(sessionOptions)
-    );
+app.use(expressSession(sessionOptions));
 
 
 
