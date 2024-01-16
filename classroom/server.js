@@ -11,7 +11,7 @@ const sessionOptions = {
 app.use(expressSession(sessionOptions));
 
 app.get("/register", (req,res) => {
-    let {name} = req.query;
+    let {name = "anonymous"} = req.query;
     console.log(`before`,req.session);
     req.session.name =name;
     console.log(req.session.name);
@@ -20,7 +20,7 @@ app.get("/register", (req,res) => {
 });
 
 app.get("/greets", (req,res) => {
-    res.send(`Hello,${name}`);
+    res.send(`Hello,${req.session.name}`);
 });
 
 
