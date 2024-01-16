@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const expressSession = require("express-session");
 
-app.use(expressSession, ({secret:"mysuperstring"}));
+app.use(expressSession({secret:"mysupersecretstring"}));
 
 app.get("/test", (req,res)=> {
     res.send("test successfull");
