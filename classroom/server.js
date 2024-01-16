@@ -23,7 +23,7 @@ app.get("/myage",(req,res) => {
     let {age = "none"} = req.query;
     req.session.age = age;
     console.log(req.session.age);
-    res.redirect("/greets");
+    res.redirect("/age");
 
 });
 
@@ -32,8 +32,8 @@ app.get("/greets", (req,res) => {
 });
 
 app.get("/age", (req,res) => {
-    
-})
+   res.send(`your age is ${req.session.age}`);
+});
 // app.get("/reqcount",(req,res) => {
     
 //     if( req.session.count){
