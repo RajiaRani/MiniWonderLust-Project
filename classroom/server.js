@@ -2,9 +2,11 @@ const express = require("express");
 const app = express();
 const expressSession = require("express-session");
 const flash = require("connect-flash");
+const path = require("path");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+
 const sessionOptions = {
     secret:"mysupersecretstring", 
     resave:false, 
