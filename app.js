@@ -36,6 +36,9 @@ const sessionOptions = {
     secret: "mysuperscretcode",
     resave: false, 
     saveUninitialized:true,
+    cookie:{
+        
+    }
   };
 
   app.use(session(sessionOptions));
