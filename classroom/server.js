@@ -19,21 +19,23 @@ app.get("/register", (req,res) => {
     // res.send(name);
     res.redirect("/greets");
 });
-app.get("/myage",(req,res) => {
-    let {age = "none"} = req.query;
-    req.session.age = age;
-    console.log(req.session.age);
-    res.redirect("/age");
+// app.get("/myage",(req,res) => {
+//     let {age = "none"} = req.query;
+//     req.session.age = age;
+//     console.log(req.session.age);
+//     res.redirect("/age");
 
-});
+// });
 
 app.get("/greets", (req,res) => {
     res.send(`Hello,${req.session.name}`);
 });
 
-app.get("/age", (req,res) => {
-   res.send(`your age is ${req.session.age}`);
-});
+// app.get("/age", (req,res) => {
+//    res.send(`your age is ${req.session.age}`);
+// });
+
+
 // app.get("/reqcount",(req,res) => {
     
 //     if( req.session.count){
