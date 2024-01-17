@@ -44,7 +44,7 @@ const sessionOptions = {
   };
 
   //set the flash as a middleware
-  
+  app.use((req,res,next))
 
 //root
 app.get("/", (req, res) => {
