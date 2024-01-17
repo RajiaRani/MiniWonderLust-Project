@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const expressSession = require("express-session");
-
+const flash = require("connect-flash");
 const sessionOptions = {
     secret:"mysupersecretstring", 
     resave:false, 
@@ -28,7 +28,8 @@ app.get("/register", (req,res) => {
 // });
 
 app.get("/greets", (req,res) => {
-    res.send(`Hello,${req.session.name}`);
+    // res.send(`Hello,${req.session.name}`);
+
 });
 
 // app.get("/age", (req,res) => {
