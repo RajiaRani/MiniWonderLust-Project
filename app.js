@@ -32,7 +32,10 @@ async function main() {
 };
 
 
-//set the express-sessions options
+//set the sessions options
+const sessionOptions ={
+
+};
 
 //root
 app.get("/", (req, res) => {
