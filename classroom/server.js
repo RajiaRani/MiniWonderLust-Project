@@ -19,6 +19,7 @@ app.use(flash());
 //middleware of res.locals
 app.use(req,res,next){
  res.locals.sucessMsg = req.flash("sucess");
+ req.locals.errorMsg = req.flash("error");
 };
 
 app.get("/register", (req,res) => {
