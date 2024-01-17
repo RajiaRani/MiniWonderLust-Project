@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const expressSession = require("express-session");
 const flash = require("connect-flash");
+
+
 const sessionOptions = {
     secret:"mysupersecretstring", 
     resave:false, 
@@ -9,6 +11,7 @@ const sessionOptions = {
 };
 
 app.use(expressSession(sessionOptions));
+app.use(flash());
 
 app.get("/register", (req,res) => {
     let {name = "anonymous"} = req.query;
