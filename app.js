@@ -43,12 +43,7 @@ const sessionOptions = {
     }
   };
 
-  //set the flash as a middleware
-  app.use((req,res,next) => {
-   res.locals.success = req.flash("success");
-   next();
-  });
-
+ 
 //root
 app.get("/", (req, res) => {
     res.send("Hi, I am root");
@@ -57,6 +52,14 @@ app.get("/", (req, res) => {
 app.use(session(sessionOptions));
 app.use(flash());
 
+
+  //set the flash as a middleware
+  app.use((req,res,next) => {
+    res.locals.success = req.flash("success");
+    next();
+   });
+
+   
 app.use("/listings", listings);
 app.use("/listings/:id/reviews", reviews);
 
