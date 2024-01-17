@@ -17,7 +17,10 @@ app.use(expressSession(sessionOptions));
 app.use(flash());
 
 //middleware of res.locals
-app.use(req,res,next)
+app.use(req,res,next){
+ res.locals.sucessMsg = req.flash("sucess");
+};
+
 app.get("/register", (req,res) => {
     let {name = "anonymous"} = req.query;
     //console.log(`before`,req.session);
