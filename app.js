@@ -33,8 +33,10 @@ async function main() {
 
 
 //set the sessions options
-const sessionOptions ={
-
+const sessionOptions = {
+  secret: "mysuperscretcode",
+  resave: false,
+  
 };
 
 //root
