@@ -4,7 +4,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
-const express = require("express-session");
+const session = require("express-session");
 
 
 const listings = require("./routes/listing.js");
@@ -31,13 +31,14 @@ async function main() {
     await mongoose.connect(mongoURL);
 };
 
-
 //set the sessions options
 const sessionOptions = {
-  secret: "mysuperscretcode",
-  resave: false,
-  
-};
+    secret: "mysuperscretcode",
+    resave: false, 
+    saveUninitialized:true,
+  };
+
+  app.use(session(sessionOptions));
 
 //root
 app.get("/", (req, res) => {
