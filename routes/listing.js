@@ -57,9 +57,8 @@ router.post(
     //    if(!newListing.description){
     //     throw new ExpressError(400,"description is missing!!");
     //    }
-
-        await newListing.save();
         req.flash("success", "listing added successfully!");
+        await newListing.save();
         res.redirect("/listings");
     })
 );
