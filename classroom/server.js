@@ -16,6 +16,8 @@ const sessionOptions = {
 app.use(expressSession(sessionOptions));
 app.use(flash());
 
+//middleware of res.locals
+app.use(req,res,next)
 app.get("/register", (req,res) => {
     let {name = "anonymous"} = req.query;
     //console.log(`before`,req.session);
@@ -23,7 +25,12 @@ app.get("/register", (req,res) => {
     //console.log(req.session.name);
     //console.log(`after`,req.session);
     // res.send(name);
-    req.flash("sucess","user registered sucessfully");
+    if(name == "anonymous") {
+        req.flash("error", "Sorry!! user is not registered.");
+    } else{
+        req.flash("sucess","user registered sucessfully");
+    }
+  
     res.redirect("/greets");
 });
 // app.get("/myage",(req,res) => {
@@ -36,7 +43,7 @@ app.get("/register", (req,res) => {
 
 app.get("/greets", (req,res) => {
     // res.send(`Hello,${req.session.name}`);
-    res.render("page.ejs",{name:req.session.name, msg:req.flash("sucess")});
+    res.render("page.ejs",{name:req.session.name});
 
 });
 
