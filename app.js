@@ -43,6 +43,7 @@ const sessionOptions = {
     }
   };
 
+  //set the flash as a middleware
   
 
 //root
