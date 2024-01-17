@@ -59,6 +59,7 @@ router.post(
     //    }
 
         await newListing.save();
+        req.flash("success", "listing added successfully!");
         res.redirect("/listings");
     })
 );
