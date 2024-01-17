@@ -46,6 +46,7 @@ const sessionOptions = {
   //set the flash as a middleware
   app.use((req,res,next) => {
    res.locals.success = req.flash("success");
+   next();
   });
 
 //root
