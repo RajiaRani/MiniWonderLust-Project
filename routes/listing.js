@@ -85,6 +85,7 @@ router.post(
 router.get("/:id/edit", wrapAsync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
+    req.session("success","listing editted successfully!!");
     res.render("listing/edit.ejs", { listing });
 
 })
@@ -95,6 +96,7 @@ router.put(
     "/:id", validateListing, wrapAsync(async (req, res) => {
         let { id } = req.params;
         await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+        req.session("success","listing updated successfully!!");
         res.redirect("/listings");
         //res.redirect(`/listings/${id}`);
     })
@@ -105,6 +107,7 @@ router.delete("/:id", wrapAsync(async (req, res) => {
 
     let { id } = req.params;
     await Listing.findByIdAndDelete(id);
+    req.session("success","listing deleted successfully");
     res.redirect("/listings");
 
 })
