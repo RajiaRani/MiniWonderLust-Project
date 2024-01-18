@@ -43,6 +43,7 @@ router.post("/",
     //console.log(listing);
 
     //redirect to the show page itself
+    req.flash("success","review added");
     res.redirect(`/listings/${listing._id}`);
 })
 );
@@ -54,6 +55,7 @@ router.delete("/:reviewId", wrapAsync(async(req,res)=> {
      
     await Listing.findByIdAndUpdate(id,{$pull:{reviews:reviewId}});
     await Review.findByIdAndDelete(reviewId);
+    req.flash("success","review deleted");
     res.redirect(`/listings/${id}`);
 })
 );
