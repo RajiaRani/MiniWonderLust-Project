@@ -84,7 +84,7 @@ app.get("/demouser", async(req,res) =>{
          email : "student@gmail.com",
          username : "delta-student",
     });
-     await User.register(fakeUser,"helloworld");
+   let registerUser =  await User.register(fakeUser,"helloworld");
 })
 
 
