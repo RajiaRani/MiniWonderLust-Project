@@ -11,8 +11,8 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
-const listings = require("./routes/listing.js");
-const reviews = require("./routes/review.js");
+const Routerlistings = require("./routes/listing.js");
+const Routerreviews = require("./routes/review.js");
 
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
