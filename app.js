@@ -79,6 +79,9 @@ passport.deserializeUser(User.deserializeUser());
 app.use("/listings", listings);
 app.use("/listings/:id/reviews", reviews);
 
+app.get("/demouser", async(req,res) =>{
+    let fakeUser = new User
+})
 
 
 //STANDARD ERROR RESPONSE
