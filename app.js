@@ -62,6 +62,8 @@ app.use(passport.session());
 
 passport.use(new LocalStrategy(User.authenticate()));
 
+//serialize me addition user into session
+//deserialize means removing user from session after user exist the site
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
