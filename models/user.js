@@ -13,5 +13,8 @@ const userSchema = new Schema({
 
 
 const User = mongoose.model("User", userSchema);
+
 // adding plugin for the automatic  salting adding
 User.plugin(passportLocalMongoose);
+
+module.exports = User;
