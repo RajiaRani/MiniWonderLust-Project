@@ -56,8 +56,10 @@ app.get("/", (req, res) => {
 app.use(session(sessionOptions));
 app.use(flash());
 
+//use passport as a middleware first initialize before we use
 app.use(passport.initialize());
 app.use(passport.session());
+
   //set the flash as a middleware
   app.use((req,res,next) => {
     res.locals.success = req.flash("success");
