@@ -11,6 +11,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
+//router 
 const Routerlistings = require("./routes/listing.js");
 const Routerreviews = require("./routes/review.js");
 const Routeruser = require("./routes/user.js");
@@ -76,7 +77,8 @@ passport.deserializeUser(User.deserializeUser());
     next();
    });
 
-   
+
+//router
 app.use("/listings", Routerlistings);
 app.use("/listings/:id/reviews", Routerreviews);
 app.use("/", Routeruser);
