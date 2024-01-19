@@ -76,8 +76,8 @@ passport.deserializeUser(User.deserializeUser());
    });
 
    
-app.use("/listings", listings);
-app.use("/listings/:id/reviews", reviews);
+app.use("/listings", Routerlistings);
+app.use("/listings/:id/reviews", Routerreviews);
 
 app.get("/demouser", async(req,res) =>{
     let fakeUser = new User ({
