@@ -13,6 +13,7 @@ const User = require("./models/user.js");
 
 const Routerlistings = require("./routes/listing.js");
 const Routerreviews = require("./routes/review.js");
+const Routeruser = require("./routes/user.js");
 
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
@@ -78,6 +79,7 @@ passport.deserializeUser(User.deserializeUser());
    
 app.use("/listings", Routerlistings);
 app.use("/listings/:id/reviews", Routerreviews);
+app.use("/", Routeruser);
 
 app.get("/demouser", async(req,res) =>{
     let fakeUser = new User ({
