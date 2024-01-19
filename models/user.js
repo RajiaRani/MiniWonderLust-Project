@@ -10,3 +10,5 @@ const userSchema = new Schema({
         required:true,
     }
 });
+
+// adding plugin for the automatic  salting adding
