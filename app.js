@@ -7,6 +7,7 @@ const ejsMate = require("ejs-mate");
 const session = require("express-session");
 const flash = require("connect-flash");
 
+//require passport-strategy
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
