@@ -13,9 +13,9 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
 //router 
-const Routerlistings = require("./routes/listing.js");
-const Routerreviews = require("./routes/review.js");
-const Routeruser = require("./routes/user.js");
+const listingsRouter = require("./routes/listing.js");
+const reviewsRouter = require("./routes/review.js");
+const userRouter = require("./routes/user.js");
 
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
@@ -79,9 +79,9 @@ passport.deserializeUser(User.deserializeUser());
 
 
 //router
-app.use("/listings", Routerlistings);
-app.use("/listings/:id/reviews", Routerreviews);
-app.use("/", Routeruser);
+app.use("/listings", listingsRouter);
+app.use("/listings/:id/reviews", reviewsRouter);
+app.use("/", userRouter);
 
 
 // app.get("/demouser", async(req,res) =>{
