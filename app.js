@@ -84,15 +84,15 @@ app.use("/listings/:id/reviews", Routerreviews);
 app.use("/", Routeruser);
 
 
-app.get("/demouser", async(req,res) =>{
-    let fakeUser = new User ({
-         email : "student@gmail.com",
-         username : "delta-student",
-    });
-   let registerUser =  await User.register(fakeUser,"helloworld");
-   //console.log(registerUser);
-   res.send(registerUser);
-});
+// app.get("/demouser", async(req,res) =>{
+//     let fakeUser = new User ({
+//          email : "student@gmail.com",
+//          username : "delta-student",
+//     });
+//    let registerUser =  await User.register(fakeUser,"helloworld");
+//    //console.log(registerUser);
+//    res.send(registerUser);
+// });
 
 
 //STANDARD ERROR RESPONSE
