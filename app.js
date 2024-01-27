@@ -56,13 +56,14 @@ app.get("/", (req, res) => {
     res.send("Hi, I am root");
 });
 
+//session as a middleware
 app.use(session(sessionOptions));
 app.use(flash());
+
 
 //use passport as a middleware first initialize before we use
 app.use(passport.initialize());
 app.use(passport.session());
-
 passport.use(new LocalStrategy(User.authenticate()));
 
 //serialize me addition user into session
