@@ -59,8 +59,6 @@ app.get("/", (req, res) => {
 //session as a middleware
 app.use(session(sessionOptions));
 app.use(flash());
-
-
 //use passport as a middleware first initialize before we use
 app.use(passport.initialize());
 app.use(passport.session());
@@ -84,6 +82,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use("/listings", Routerlistings);
 app.use("/listings/:id/reviews", Routerreviews);
 app.use("/", Routeruser);
+
 
 app.get("/demouser", async(req,res) =>{
     let fakeUser = new User ({
