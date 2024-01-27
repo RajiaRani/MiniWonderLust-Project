@@ -41,16 +41,16 @@ async function main() {
 //set the sessions options
 const sessionOptions = {
     secret: "mysuperscretcode",
-    resave: false, 
-    saveUninitialized:true,
-    cookie:{
-       expires: Date.now()+ 7 * 24 * 60 * 60 * 1000,
-       maxAge : 7 * 24 * 60 * 60 * 1000,
-       httpOnly: true,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        httpOnly: true,
     }
-  };
+};
 
- 
+
 //root
 app.get("/", (req, res) => {
     res.send("Hi, I am root");
@@ -69,13 +69,13 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-  //set the flash as a middleware
-  app.use((req,res,next) => {
+//set the flash as a middleware
+app.use((req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     //console.log(success);
     next();
-   });
+});
 
 
 //router
@@ -107,8 +107,8 @@ app.use((err, req, res, next) => {
     let { statusCode = 500, message = "Something went wrong!!!" } = err;
     //res.status(statusCode).send(message);
     //res.render("errors.ejs", {err})
-    res.status(statusCode).render("errors.ejs", {message});
-   // res.status(statusCode).render("errors.ejs", {err});
+    res.status(statusCode).render("errors.ejs", { message });
+    // res.status(statusCode).render("errors.ejs", {err});
 
 });
 
