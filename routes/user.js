@@ -10,6 +10,8 @@ router.post("/signup",async(req,res) => {
     const newUser =  new User({username,email});
     const registeredUser = await User.register(newUser,password);
     console.log(registeredUser);
+    req.flash("success" , "Welcome to Wonderlust");
+    res.redirect("/listings");
 });
 
 
