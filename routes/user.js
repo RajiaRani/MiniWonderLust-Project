@@ -44,9 +44,10 @@ router.post(
         failureFlash:true,
     }), 
     async(req,res) => {
-    //    res.send("Welcome to Wonderlust you are logged in !");
+    // res.send("Welcome to Wonderlust you are logged in !");
     req.flash("success","Welcome back to wondelust!");
-    res.redirect(res.locals.redirectUrl);
+    let redirectUrl = res.locals.redirectUrl || "/listings";
+    res.redirect(redirectUrl);
     });
 
 
