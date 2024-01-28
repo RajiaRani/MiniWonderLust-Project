@@ -59,7 +59,6 @@ router.get("/:id", wrapAsync(async (req, res) => {
 router.post(
       "/", 
       isLoggedIn,
-
       validateListing , 
       wrapAsync(async (req, res, next) => {
         // let result = listingSchema.validate(req.body);
@@ -71,7 +70,7 @@ router.post(
         //     throw new ExpressError(400, "Please enter the validate data.");
         // }
        const newListing = new Listing(req.body.listing);
-
+       newListing.owner = req.user._id;
     //    if(!newListing.description){
     //     throw new ExpressError(400,"description is missing!!");
     //    }
