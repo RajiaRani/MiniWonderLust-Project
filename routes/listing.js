@@ -4,6 +4,7 @@ const Listing = require("../models/listing.js");//change the path  according to 
 const wrapAsync = require("../utils/wrapAsync.js");
 const ExpressError = require("../utils/ExpressError.js");
 const { listingSchema } = require("../schema.js"); 
+const {isLoggedIn} = require("../middleware.js");
 
 
 
@@ -28,8 +29,11 @@ router.get("/",  wrapAsync(async (req, res) => {
 
 
 //Step:3 New Route
-router.get("/new", (req, res) => {
-    res.render("listing/new.ejs");
+router.get(
+    "/new",
+     isLoggedIn,
+     (req, res) => {
+      res.render("listing/new.ejs");
 });
 
 
