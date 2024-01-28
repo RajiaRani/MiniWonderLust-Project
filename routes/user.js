@@ -41,6 +41,16 @@ router.post(
     req.flash("success","Welcome back to wondelust!");
     res.redirect("/listings");
     });
-    
+
+
+router.get("/logout", (req,res) => {
+    req.logout((err)=>{
+        if(err) {
+            return next(err);
+        }
+        req.flash("success" , "logout successfully!!");
+        res.redirect("/listings");
+    })
+})
 
 module.exports = router;
