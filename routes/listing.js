@@ -55,7 +55,10 @@ router.get("/:id", wrapAsync(async (req, res) => {
 
 //Step:4 Create route
 router.post(
-    "/", validateListing , wrapAsync(async (req, res, next) => {
+      "/", 
+      isLoggedIn,
+      validateListing , 
+      wrapAsync(async (req, res, next) => {
         // let result = listingSchema.validate(req.body);
         // console.log(result);
         // if(result.error){
@@ -94,7 +97,10 @@ router.post(
 
 
 //Edit route
-router.get("/:id/edit", wrapAsync(async (req, res) => {
+router.get(
+    "/:id/edit",
+    isLoggedIn,
+    wrapAsync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
     req.flash("success","listing editted successfully!!");
@@ -111,7 +117,10 @@ router.get("/:id/edit", wrapAsync(async (req, res) => {
 
 //update route
 router.put(
-    "/:id", validateListing, wrapAsync(async (req, res) => {
+    "/:id", 
+    isLoggedIn,
+    validateListing,
+     wrapAsync(async (req, res) => {
         let { id } = req.params;
         await Listing.findByIdAndUpdate(id, { ...req.body.listing });
         req.flash("success","listing updated successfully!!");
@@ -121,7 +130,10 @@ router.put(
 );
 
 //DELETE ROUTE
-router.delete("/:id", wrapAsync(async (req, res) => {
+router.delete(
+    "/:id",
+    isLoggedIn,
+     wrapAsync(async (req, res) => {
 
     let { id } = req.params;
     await Listing.findByIdAndDelete(id);
