@@ -1,6 +1,7 @@
 
 module.exports.isLoggedIn = (req, res, next) => {
-    console.log(req);
+   // console.log(req);
+   console.log(req.path, "..", req.originalUrl);
     //console.log(req.user);
     if (!req.isAuthenticated()) {
          // return res.redirect("/listings");
