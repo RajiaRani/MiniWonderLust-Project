@@ -31,6 +31,7 @@ router.get("/",  wrapAsync(async (req, res) => {
 //Step:3 New Route
 router.get(
     "/new",
+    //isLoggedIn is a middleware to check that humara user ne login kiya hai ya nhi
      isLoggedIn,
      (req, res) => {
       res.render("listing/new.ejs");
