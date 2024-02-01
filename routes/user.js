@@ -37,6 +37,7 @@ router.get("/login", (req,res) =>{
     res.render("users/login.ejs");
 });
 
+//POST - Login
 router.post(
     "/login", 
     saveRedirectUrl,
