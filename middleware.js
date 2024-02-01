@@ -1,4 +1,4 @@
-
+ //isLoggedIn is a middleware to check that humara user ne login kiya hai ya nhi
 module.exports.isLoggedIn = (req, res, next) => {
    // console.log(req);
    //console.log(req.path, "..", req.originalUrl);
