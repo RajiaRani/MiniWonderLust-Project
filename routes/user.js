@@ -32,7 +32,7 @@ router.post("/signup",
 })
 );
 
-
+//GET - Login
 router.get("/login", (req,res) =>{
     res.render("users/login.ejs");
 });
