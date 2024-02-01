@@ -10,7 +10,7 @@ router.get("/signup",(req,res) => {
     res.render("users/signup.ejs");
 });
 
-
+//POST - signup
 router.post("/signup",
       wrapAsync(async(req,res) => {
     try{
