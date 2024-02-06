@@ -53,8 +53,8 @@ router.post(
     res.redirect(redirectUrl);
     });
 
-
-router.get("/logout", (req,res) => {
+//GET-Logout 
+router.get("/logout", (req,res,next) => {
     req.logout((err)=>{
         if(err) {
             return next(err);
