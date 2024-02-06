@@ -2,9 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Listing = require("../models/listing.js");//change the path  according to their path
 const wrapAsync = require("../utils/wrapAsync.js");
-const {isLoggedIn, isOwner} = require("../middleware.js");
-const {validateListing} = require("../middleware.js");
- 
+const {isLoggedIn, isOwner, validateListing} = require("../middleware.js");
 
 
 
