@@ -104,6 +104,7 @@ router.post(
 router.get(
     "/:id/edit",
     isLoggedIn,
+    isOwner,
     wrapAsync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
@@ -138,6 +139,7 @@ router.put(
 router.delete(
     "/:id",
     isLoggedIn,
+    isOwner,
      wrapAsync(async (req, res) => {
 
     let { id } = req.params;
