@@ -1,3 +1,6 @@
+ const Listing = require("./routes/listing");
+ 
+ 
  //isLoggedIn is a middleware to check that humara user ne login kiya hai ya nhi
 module.exports.isLoggedIn = (req, res, next) => {
    // console.log(req);
@@ -21,3 +24,13 @@ module.exports.saveRedirectUrl = (req,res,next) => {
     }
     next();
 };
+
+module.exports.isOwner = async(req,res,next) => {
+    let {id} = req.params;
+    let listing = await Listing.findById(id);
+    if(!currUser && listing.owner._id.equals(res.locals.currUser._id)){
+    req.flash("error", "Opps!  you don't havae permission to edit");
+    res.redirect(`/listings/${id}`);
+    }
+    next();
+}
