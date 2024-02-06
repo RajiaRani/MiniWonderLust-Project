@@ -5,7 +5,13 @@
 
       <h3>Create a new Listing:</h3>
 
-      <form method="POST" action="/listings" class="needs-validation" novalidate >
+      <form 
+      method="POST" 
+      action="/listings" 
+      class="needs-validation" 
+      novalidate
+      enctype="multipart/form-data" >
+      
         <!--class="needs-validation" take from bootstrap-->
         <div class="mb-3"> <!-- mb = margin bottom3-->
           <label for="title" class="form-label">Title</label>
