@@ -42,7 +42,9 @@ router.post("/",
 );
 
 //Delete Review Route
-router.delete("/:reviewId", wrapAsync(async(req,res)=> {
+router.delete("/:reviewId", 
+       isLoggedIn,
+       wrapAsync(async(req,res)=> {
     let {id} = req.params; //extracts the listing id
     let { reviewId} = req.params; //extracts the reviews id
      
