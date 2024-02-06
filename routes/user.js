@@ -41,7 +41,7 @@ router.get("/login", (req,res) =>{
 //POST - Login
 router.post(
     "/login", 
-    saveRedirectUrl,
+    saveRedirectUrl, 
     //passport is a authenticate middleware
     passport.authenticate("local",{
         failureRedirect:"/login", 

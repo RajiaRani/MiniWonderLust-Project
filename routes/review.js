@@ -4,13 +4,14 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const Listing = require("../models/listing.js");
 const ExpressError = require("../utils/ExpressError.js");
 const Review = require("../models/review.js");
-const {validateReview} = require("../middleware.js");
+const {validateReview, isLoggedIn} = require("../middleware.js");
 
 
 
 //Reviews
 //POST ROUTE
 router.post("/", 
+         isLoggedIn,
          validateReview, 
          wrapAsync(async (req, res) => 
          {
