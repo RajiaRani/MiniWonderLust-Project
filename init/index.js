@@ -17,7 +17,7 @@ async function main() {
 //create the new data
 const initDB = async () =>{
     await Listing.deleteMany({}); //delete all the data before adding new data files
-    initData.data = initData.data.map((obj)=> ({...obj, owner:"65b5b9bf307524fb5197fdde"}));
+    initData.data = initData.data.map((obj)=> ({...obj, owner:"65b5b9bf307524fb5197fdde"})); //ye method se hum apne har ek listing ek inside owner property ko add kar dege with same owner_id
     await Listing.insertMany(initData.data); //add the data from initdata(object)
     console.log("data was initialized");
 };
