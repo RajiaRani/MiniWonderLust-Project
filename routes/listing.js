@@ -8,11 +8,14 @@ const listingController = require("../controllers/listing.js");
 router
 .route("/")
 .get( wrapAsync(listingController.index)) //step:1 index route
-.post(
-    isLoggedIn,
-    validateListing , 
-    wrapAsync(listingController.createListing)
-    ); //Step:4 Create route
+.post((req,res) => 
+res.send(req.body)
+)
+// .post(
+//     isLoggedIn,
+//     validateListing , 
+//     wrapAsync(listingController.createListing)
+//     ); //Step:4 Create route
 
 
 
