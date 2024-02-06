@@ -1,6 +1,22 @@
  const Listing = require("./routes/listing");
+ const ExpressError = require("./utils/ExpressError.js");
+const { listingSchema } = require("./schema.js"); 
  
- 
+ //Validate Listing Schema
+module.exports.validateListing = (req,res,next) => {
+    let {error} = listingSchema.validate(req.body);
+    //agar error exist karta hai to
+    if(error) {
+        let errMsg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(400,errMsg);
+    } else{
+        next();
+    };
+};
+
+
+
+
  //isLoggedIn is a middleware to check that humara user ne login kiya hai ya nhi
 module.exports.isLoggedIn = (req, res, next) => {
    // console.log(req);

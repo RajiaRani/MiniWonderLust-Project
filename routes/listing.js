@@ -2,23 +2,11 @@ const express = require("express");
 const router = express.Router();
 const Listing = require("../models/listing.js");//change the path  according to their path
 const wrapAsync = require("../utils/wrapAsync.js");
-const ExpressError = require("../utils/ExpressError.js");
-const { listingSchema } = require("../schema.js"); 
 const {isLoggedIn, isOwner} = require("../middleware.js");
+const {validateListing} = require("../middleware.js");
+ 
 
 
-
-//Validate Listing Schema
-const validateListing = (req,res,next) => {
-    let {error} = listingSchema.validate(req.body);
-    //agar error exist karta hai to
-    if(error) {
-        let errMsg = error.details.map((el) => el.message).join(",");
-        throw new ExpressError(400,errMsg);
-    } else{
-        next();
-    };
-};
 
 //step:1 index route
 router.get("/",  wrapAsync(async (req, res) => {
