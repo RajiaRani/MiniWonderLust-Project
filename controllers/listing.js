@@ -27,3 +27,36 @@ module.exports.showListing = async (req, res) => {
     console.log(listing);
     res.render("listing/show.ejs", { listing });
 };
+
+module.exports.createListing = async (req, res, next) => {
+    // let result = listingSchema.validate(req.body);
+    // console.log(result);
+    // if(result.error){
+    //     throw new ExpressError(400,result.error);
+    // } 
+    // if(!req.body.listing){
+    //     throw new ExpressError(400, "Please enter the validate data.");
+    // }
+   const newListing = new Listing(req.body.listing);
+   newListing.owner = req.user._id;
+//    if(!newListing.description){
+//     throw new ExpressError(400,"description is missing!!");
+//    }
+    req.flash("success", "listing added successfully!");
+    await newListing.save();
+    res.redirect("/listings");
+};
+
+module.exports.editForm = async (req, res) => {
+    let { id } = req.params;
+    const listing = await Listing.findById(id);
+    req.flash("success","listing editted successfully!!");
+    //agar listing present nhi hai
+    if(!listing){
+        req.flash("error","Listing you requesting for does not exist.");
+        res.redirect("/listings");
+    };
+
+    res.render("listing/edit.ejs", { listing });
+
+};
