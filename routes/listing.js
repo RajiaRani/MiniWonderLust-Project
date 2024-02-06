@@ -7,7 +7,8 @@ const listingController = require("../controllers/listing.js");
 
 //require multer for the images uploading
 const multer  = require('multer');
-const upload = multer({ dest: 'uploads/' });
+const {storage} = require("../cloudconf.js");
+const upload = multer({ storage });
 
 
 router
