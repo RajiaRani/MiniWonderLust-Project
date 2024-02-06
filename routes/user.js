@@ -24,23 +24,10 @@ router.post(
     passport.authenticate("local",{
         failureRedirect:"/login", 
         failureFlash:true,
-    }), 
-    async(req,res) => {
-    // res.send("Welcome to Wonderlust you are logged in !");
-    req.flash("success","Welcome back to Wondelust!");
-    let redirectUrl = res.locals.redirectUrl || "/listings";
-    res.redirect(redirectUrl);
-    });
+    }), userController.logIn);
+
 
 //GET-Logout 
-router.get("/logout", (req,res,next) => {
-    req.logout((err)=>{
-        if(err) {
-            return next(err);
-        }
-        req.flash("success" , "logout successfully!!");
-        res.redirect("/listings");
-    })
-})
+router.get("/logout",userController.logOut);
 
 module.exports = router;
