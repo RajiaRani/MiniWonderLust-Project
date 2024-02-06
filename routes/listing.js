@@ -15,34 +15,13 @@ router.get("/",
 router.get(
     "/new",
     //isLoggedIn is a middleware to check that humara user ne login kiya hai ya nhi
-     isLoggedIn,
-     (req, res) => {
-      res.render("listing/new.ejs");
-});
+     isLoggedIn,(listingController.renderNewForm )
+ );
 
 
 //Step:2 show route
 router.get("/:id", 
-        wrapAsync(async (req, res) => {
-    let { id } = req.params;
-    const listing = await Listing.findById(id)
-    .populate({
-        path:"reviews",
-        populate:{
-        path:"author"
-      },
-    })
-    .populate("owner");
-
-    //agar listing present nhi hai
-    if(!listing){
-        req.flash("error","Listing you requesting for does not exist.");
-        res.redirect("/listings");
-    };
-    console.log(listing);
-    res.render("listing/show.ejs", { listing });
-})
-);
+        wrapAsync(listingController.showListing));
 
 
 //Step:4 Create route
