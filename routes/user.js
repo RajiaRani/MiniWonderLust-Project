@@ -4,6 +4,7 @@ const User = require("../models/user.js");
 const wrapAsync = require("../utils/wrapAsync");
 const passport = require("passport");
 const { saveRedirectUrl } = require("../middleware.js");
+const userController = require("../controllers/user.js");
 
 //GET - signup
 router.get("/signup",(req,res) => {
@@ -12,26 +13,7 @@ router.get("/signup",(req,res) => {
 
 //POST - signup
 router.post("/signup",
-      wrapAsync(async(req,res) => {
-    try{
-        let {username, email, password} = req.body;
-        const newUser =  new User({username,email});
-        const registeredUser = await User.register(newUser,password);//user ko register karne ke liye
-        console.log(registeredUser);
-        //automatic login the user
-        req.login(registeredUser, (err) => {
-            if(err) {
-                return next(err);
-            }
-            req.flash("success","Welcome to Wonderlust!!");
-            res.redirect("/listings");
-        });
-    } catch(e) {
-        req.flash("error", e.message);
-        res.redirect("/signup");
-    };
-})
-);
+      wrapAsync(userController.signUp));
 
 //GET - Login
 router.get("/login", (req,res) =>{
