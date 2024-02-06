@@ -39,7 +39,8 @@ router.get(
 
 
 //Step:2 show route
-router.get("/:id", wrapAsync(async (req, res) => {
+router.get("/:id", 
+        wrapAsync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id)
     .populate("reviews")
