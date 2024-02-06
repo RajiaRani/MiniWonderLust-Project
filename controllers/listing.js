@@ -9,7 +9,7 @@ module.exports.renderNewForm = (req, res) => {
 }
 
 module.exports.showListing = async (req, res) => {
-    let { id } = req.params;
+    let {id} = req.params;
     const listing = await Listing.findById(id)
     .populate({
         path:"reviews",
@@ -48,24 +48,23 @@ module.exports.createListing = async (req, res, next) => {
 };
 
 module.exports.editForm = async (req, res) => {
-    let { id } = req.params;
+    let {id} = req.params;
     const listing = await Listing.findById(id);
     req.flash("success","listing editted successfully!!");
     //agar listing present nhi hai
     if(!listing){
         req.flash("error","Listing you requesting for does not exist.");
         res.redirect("/listings");
-    };
-
+    }
     res.render("listing/edit.ejs", { listing });
 
 };
 
 module.exports.updateForm = async (req, res) => {
-    let { id } = req.params;
+    let {id} = req.params;
     await Listing.findByIdAndUpdate(id, { ...req.body.listing });
     req.flash("success","listing updated successfully!!");
-    res.redirect("/listings");
+    res.redirect(`/listings/${id}`);
     //res.redirect(`/listings/${id}`);
 };
 
