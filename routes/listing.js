@@ -3,15 +3,12 @@ const router = express.Router();
 const Listing = require("../models/listing.js");//change the path  according to their path
 const wrapAsync = require("../utils/wrapAsync.js");
 const {isLoggedIn, isOwner, validateListing} = require("../middleware.js");
-
+const listingController = require("../controllers/listing.js");
 
 
 //step:1 index route
-router.get("/",  wrapAsync(async (req, res) => {
-    const allListing = await Listing.find({}); //collected all the data from mongodb
-    res.render("listing/index.ejs", { allListing });
-})
-);
+router.get("/",  
+      wrapAsync(listingController.index));
 
 
 //Step:3 New Route
@@ -29,7 +26,12 @@ router.get("/:id",
         wrapAsync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id)
-    .populate("reviews")
+    .populate({
+        path:"reviews",
+        populate:{
+        path:"author"
+      },
+    })
     .populate("owner");
 
     //agar listing present nhi hai
