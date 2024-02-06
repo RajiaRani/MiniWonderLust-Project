@@ -24,6 +24,7 @@ const listingSchema = new Schema({
         ref: "Review",
       },
     ],
+    // single owner
     owner:{
       type:Schema.Types.ObjectId,
       ref:"User",
