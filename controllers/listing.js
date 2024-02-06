@@ -40,6 +40,7 @@ module.exports.createListing = async (req, res, next) => {
     let url = req.file.path;
     let filename = req.file.filename;
     const newListing = new Listing(req.body.listing);
+    newListing.image = {url, filename};
     newListing.owner = req.user._id;
 //    if(!newListing.description){
 //     throw new ExpressError(400,"description is missing!!");
