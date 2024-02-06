@@ -4,7 +4,7 @@ const Listing = require("../models/listing.js");//change the path  according to 
 const wrapAsync = require("../utils/wrapAsync.js");
 const ExpressError = require("../utils/ExpressError.js");
 const { listingSchema } = require("../schema.js"); 
-const {isLoggedIn} = require("../middleware.js");
+const {isLoggedIn, isOwner} = require("../middleware.js");
 
 
 
@@ -123,6 +123,7 @@ router.get(
 router.put(
     "/:id", 
     isLoggedIn,
+    isOwner,
     validateListing,
      wrapAsync(async (req, res) => {
         let { id } = req.params;
