@@ -1,7 +1,7 @@
  const Listing = require("./routes/listing");
  const ExpressError = require("./utils/ExpressError.js");
 const { listingSchema } = require("./schema.js"); 
-const { reviewSchema  } = require("../schema.js");
+const { reviewSchema  } = require("./schema.js");
  
  //Validate Listing Schema
 module.exports.validateListing = (req,res,next) => {
