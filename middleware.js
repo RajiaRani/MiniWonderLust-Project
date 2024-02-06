@@ -13,10 +13,11 @@ module.exports.isLoggedIn = (req, res, next) => {
     next();
 };
 
-
+//redirect URL ko save karne ke liye
 module.exports.saveRedirectUrl = (req,res,next) => {
-    if(req.session.redirectUrl) {
-        res.locals.redirectUrl = req.session.redirectUrl;
+    if(req.session.redirectUrl) //agar ko redirect variable present hais 
+    {
+        res.locals.redirectUrl = req.session.redirectUrl;  //usko locals mein save kar lege
     }
     next();
 };
