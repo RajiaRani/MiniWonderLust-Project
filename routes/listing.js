@@ -62,28 +62,13 @@ router.put(
     isLoggedIn,
     isOwner,
     validateListing,
-     wrapAsync(async (req, res) => {
-        let { id } = req.params;
-        await Listing.findByIdAndUpdate(id, { ...req.body.listing });
-        req.flash("success","listing updated successfully!!");
-        res.redirect("/listings");
-        //res.redirect(`/listings/${id}`);
-    })
-);
+     wrapAsync(listingController.updateForm));
 
 //DELETE ROUTE
 router.delete(
     "/:id",
     isLoggedIn,
     isOwner,
-     wrapAsync(async (req, res) => {
-
-    let { id } = req.params;
-    await Listing.findByIdAndDelete(id);
-    req.flash("success","listing deleted successfully");
-    res.redirect("/listings");
-
-})
-);
+     wrapAsync(listingController.deleteListing));
 
 module.exports = router;
