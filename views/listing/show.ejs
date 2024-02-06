@@ -19,7 +19,7 @@
         </div>
 
         <br/>
-       <% if(currUser && currUser._id.equals(listing.owner)){ %>
+       <% if(currUser && currUser._id.equals(listing.owner._id)){ %>
         <div class="show-btns mb-2">
             <a 
             href="/listings/<%= listing._id %>/edit"
