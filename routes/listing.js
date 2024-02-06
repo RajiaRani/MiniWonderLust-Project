@@ -15,8 +15,7 @@ router.get("/",
 router.get(
     "/new",
     //isLoggedIn is a middleware to check that humara user ne login kiya hai ya nhi
-     isLoggedIn,(listingController.renderNewForm )
- );
+     isLoggedIn,(listingController.renderNewForm ));
 
 
 //Step:2 show route
@@ -30,24 +29,6 @@ router.post(
       isLoggedIn,
       validateListing , 
       wrapAsync(listingController.createListing));
-
-
-
-// app.post("/listings", async (req, res,next) => {
-//     //let {title, description, image, price, location, country} = req.body;
-//     //let listing = req.body;
-//     // let listing = req.body.listing;
-//     //console.log(listing);
-//     try {
-//         const newListing = new Listing(req.body.listing);
-//         await newListing.save();
-//         res.redirect("/listings");
-//     } catch (err) {
-//         next(err);
-//     };
-
-// });
-
 
 //Edit route
 router.get(
