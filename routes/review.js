@@ -21,6 +21,8 @@ router.post("/",
 
     // Create a new Review based on req.body.reviews
     let newReview = new Review(req.body.reviews);
+    newReview.author = req.user._id; 
+    //console.log(newReview);
     // Push the new review to the listing's reviews array
     listing.reviews.push(newReview);
 
