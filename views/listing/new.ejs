@@ -31,9 +31,12 @@
         </div>
         <div class="mb-3">
           <label for="description" class="form-label">Description</label>
-           <textarea name="listing[description]" class="form-control" required></textarea>
+           <textarea 
+           name="listing[description]"
+            class="form-control" 
+            required>
+          </textarea>
 
-          
           <!-- here i give the failure text or else Invalid text -->
           <div class="invalid-feedback">
             Description should be valid.
@@ -45,10 +48,12 @@
         </div>
 
         <div class="mb-3">
-          <label for="imgae" class="form-label">Upload Listing Image</label>
+          <label for="imgae" 
+          class="form-label">Upload Listing Image</label>
           <input type="file" 
           name="listing[image]" 
-          class="form-control" />
+          class="form-control"
+          required />
         </div>
 
         <div class="row">
