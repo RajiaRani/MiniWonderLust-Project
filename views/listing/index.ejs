@@ -9,7 +9,7 @@
         <% for(let listing of allListing){ %>
            <a href="/listings/<%= listing._id %>"  class="listing-link">
              <div class="card col listing-card" > <!--cards ko columns mein arrange kar dege -->
-                <img src="<%= listing.image %>" class="card-img-top" alt="...">
+                <img src="<%= listing.image.url %>" class="card-img-top" alt="...">
 
                 <div class="card-img-overlay"></div>
                 <div class="card-body">
