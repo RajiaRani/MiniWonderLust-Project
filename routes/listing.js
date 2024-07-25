@@ -16,8 +16,8 @@ router
 .get( wrapAsync(listingController.index)) //step:1 index route
 .post(
      isLoggedIn,
-     validateListing , 
      upload.single("listing[image]"),
+     validateListing , 
      wrapAsync(listingController.createListing)
     ); //Step:4 Create route
 
@@ -32,13 +32,15 @@ router.get(
 
 router
 .route("/:id")
-.get(wrapAsync(listingController.showListing)) //Step:2 show route
+//Step:2 show route
+.get(wrapAsync(listingController.showListing)) 
+//update route
 .put(
     isLoggedIn,
     isOwner,
     upload.single("listing[image]"),
     validateListing,
-     wrapAsync(listingController.updateForm)) //update route
+     wrapAsync(listingController.updateForm)) 
 .delete(
     isLoggedIn,
     isOwner,
@@ -52,7 +54,5 @@ router.get(
     isLoggedIn,
     isOwner,
     wrapAsync(listingController.editForm));
-
-
 
 module.exports = router;

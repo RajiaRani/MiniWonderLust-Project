@@ -1,13 +1,22 @@
 const Listing = require("../models/listing");
+//MapBox
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const mapToken =  process.env.MAP_TOKEN ;
+const geocodingClient = mbxGeocoding({ accessToken:mapToken});
 
+//INDEX ROUTE
 module.exports.index = async (req, res) => {
     const allListing = await Listing.find({}); //collected all the data from mongodb
     res.render("listing/index.ejs", { allListing });
 }
+
+//NEW FORM RENDER
 module.exports.renderNewForm = (req, res) => {
     res.render("listing/new.ejs");
 }
 
+
+//SHOW ROUTE
 module.exports.showListing = async (req, res) => {
     let {id} = req.params;
     const listing = await Listing.findById(id)
@@ -24,10 +33,12 @@ module.exports.showListing = async (req, res) => {
         req.flash("error","Listing you requesting for does not exist.");
         res.redirect("/listings");
     };
-    console.log(listing);
-    res.render("listing/show.ejs", { listing });
+    //console.log(listing);
+    res.render("listing/show.ejs", { listing, 
+        hereMapsApiKey: process.env.HERE_MAPS_API_KEY  });
 };
 
+//CREATE ROUTE
 module.exports.createListing = async (req, res, next) => {
     // let result = listingSchema.validate(req.body);
     // console.log(result);
@@ -37,19 +48,40 @@ module.exports.createListing = async (req, res, next) => {
     // if(!req.body.listing){
     //     throw new ExpressError(400, "Please enter the validate data.");
     // }
+
+  let response = await geocodingClient
+      .forwardGeocode({
+        query: req.body.listing.location,
+        limit: 1
+      }).send();
+      
+    //console.log(response.body.features[0].geometry);
+    if (response.body.features.length === 0) {
+        req.flash("error", "Location not found");
+        return res.redirect("/listings/new");
+    }
+
+
     let url = req.file.path;
     let filename = req.file.filename;
     const newListing = new Listing(req.body.listing);
-    newListing.image = {url, filename};
     newListing.owner = req.user._id;
-//    if(!newListing.description){
-//     throw new ExpressError(400,"description is missing!!");
-//    }
+    newListing.image = {url, filename};
+
+    newListing.geometry = response.body.features[0].geometry;
+
+   if(!newListing.description){
+    throw new ExpressError(400,"description is missing!!");
+   }
+   
+    let savedListing = await newListing.save();
+    //console.log(savedListing);
     req.flash("success", "listing added successfully!");
-    await newListing.save();
     res.redirect("/listings");
 };
 
+
+//EDIT FORM
 module.exports.editForm = async (req, res) => {
     let {id} = req.params;
     const listing = await Listing.findById(id);
@@ -66,7 +98,7 @@ module.exports.editForm = async (req, res) => {
 
 };
 
-
+//UPDATE ROUTE
 module.exports.updateForm = async (req, res) => {
     let {id} = req.params;
     let listing = await Listing.findByIdAndUpdate(id, { ...req.body.listing });
@@ -74,6 +106,7 @@ module.exports.updateForm = async (req, res) => {
    if(typeof req.file!= "undefined"){
     let url = req.file.path;
     let filename = req.file.filename;
+    listing.image = { url, filename};
     await listing.save();
    }
 
@@ -82,6 +115,7 @@ module.exports.updateForm = async (req, res) => {
     //res.redirect(`/listings/${id}`);
 };
 
+// DELETE ROUTE
 module.exports.destroyListing = async (req, res) => {
 
     let { id } = req.params;

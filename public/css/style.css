@@ -1,15 +1,29 @@
- body{
+body{
     font-family: "Plus Jakarta Sans", sans-serif !important;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-} 
+}
 
+.container{
+    flex: 1;
+}
+
+/*--------------================ Buttons Stylling ==================----------*/
+.add-btn, .edit-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+}
+
+.btns{
+    display: flex;
+}
+
+/*------------------========= Navbar Styling Start ========---------------------------*/
 .navbar{
     height: 5rem;
     background-color: white;
 }
-
 .fa-compass{
     color: #fe424d;
     font-size: 2rem;
@@ -17,37 +31,42 @@
 .nav-link{
     color: #222222 !important;
 }
+/*--------------------========= Navbar Styling End ========---------------------------*/
 
-/* footer style */
+/*------------------========= Footer Styling Start ========---------------------------*/
 .f-info{
-    height:8rem;
+    text-align: center;
+    height: 8rem;
     background-color: #ebebeb;
-  display: flex;
-  flex-wrap: wrap;
-  text-align: center;
-  justify-content: center;
-  align-items: space-evenly;
-}
- .f-info-brand, .f-info-links, .f-info-socials{
-    width:100%;
     display: flex;
     align-items: center;
     justify-content: center;
- }
+    align-items: space-evenly;
+    flex-wrap: wrap;
+   
+}
 .f-info-socials i{
-    margin-right: 1rem; 
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    margin-right: 1.2rem;
 }
 
-
-
+.f-info-links,
+.f-info-socials,
+.f-info-brand{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .f-info-links a{
     text-decoration: none;
     color: #222222;
 }
-.f-info-links a :hover{
+.f-info-links a:hover{
+    color: #222222;
     text-decoration: underline;
 }
+/*------------------========= Footer Styling End ========---------------------------*/
 
 /* card */
 .listing-card{
@@ -90,19 +109,31 @@
     border: none !important;
 }
 
-.show-img{
-    height: 30vh;
-}
+
 .show-btns{
     display: flex;;
 }
 
+
+.show-image{
+    height: 30vh;
+}
 .show-card{
     padding-left: 0;
     padding-right: 0;
 }
+
 .btn-dark{
     background-color: #343a40;
     color: #ffffff;
     border-radius: 0.5em;
+}
+
+
+
+
+/*========== MAP STYLING ==========*/
+#map{
+    height: 400px;
+    width: 70vh;
 }
