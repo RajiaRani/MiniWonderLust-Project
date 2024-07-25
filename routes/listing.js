@@ -30,6 +30,9 @@ router.get(
      isLoggedIn,(listingController.renderNewForm ));
 
 
+//Filter
+router.get("/filter", wrapAsync(listingController.filterByCategory));
+
 router
 .route("/:id")
 //Step:2 show route
@@ -45,6 +48,7 @@ router
     isLoggedIn,
     isOwner,
     wrapAsync(listingController.destroyListing)); //DELETE ROUTE
+
 
 
 //Edit route

@@ -38,10 +38,11 @@ const listingSchema = new Schema({
       required: true
     }
    },
-  //  category:{
-  //   type: String,
-  //   enum: ["mountains", "rooms", "trending", "castles", "arctic", "iconic cities", "camping", "amazing views", "farms", "lakefront", "beach", "amazing pools"],
-  //  }
+   category:{
+    type: String,
+    enum: ["mountains", "rooms", "trending", "castles", "arctic", "iconic cities", "camping", "amazing views", "farms", "lakefront", "beach", "amazing pools"],
+    required: true
+   }
 });
 
 //post middleware

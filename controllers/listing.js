@@ -115,7 +115,12 @@ module.exports.updateForm = async (req, res) => {
     //res.redirect(`/listings/${id}`);
 };
 
-
+//Filter
+module.exports.filterByCategory = async (req, res) => {
+    const { category } = req.query;
+    const filteredListings = await Listing.find({ category });
+    res.render("listing/index.ejs", { allListing: filteredListings });
+};
 
 // DELETE ROUTE
 module.exports.destroyListing = async (req, res) => {
