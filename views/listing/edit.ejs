@@ -78,6 +78,26 @@
 
                     <div class="invalid-feedback">Country should be valid</div>
                 </div>
+                <div class="mb-3">
+                    <label for="category" class="form-label">Category</label>
+                    <select class="form-select" id="category" name="listing[category]" required>
+                        <option value="">Choose a category</option>
+                        <option value="mountains" <%= listing.category === 'mountains' ? 'selected' : '' %>>Mountains</option>
+                        <option value="rooms" <%= listing.category === 'rooms' ? 'selected' : '' %>>Rooms</option>
+                        <option value="trending" <%= listing.category === 'trending' ? 'selected' : '' %>>Trending</option>
+                        <option value="castles" <%= listing.category === 'castles' ? 'selected' : '' %>>Castles</option>
+                        <option value="arctic" <%= listing.category === 'arctic' ? 'selected' : '' %>>Arctic</option>
+                        <option value="iconic cities" <%= listing.category === 'iconic cities' ? 'selected' : '' %>>Iconic Cities</option>
+                        <option value="camping" <%= listing.category === 'camping' ? 'selected' : '' %>>Camping</option>
+                        <option value="amazing views" <%= listing.category === 'amazing views' ? 'selected' : '' %>>Amazing Views</option>
+                        <option value="farms" <%= listing.category === 'farms' ? 'selected' : '' %>>Farms</option>
+                        <option value="lakefront" <%= listing.category === 'lakefront' ? 'selected' : '' %>>Lakefront</option>
+                        <option value="beach" <%= listing.category === 'beach' ? 'selected' : '' %>>Beach</option>
+                        <option value="amazing pools" <%= listing.category === 'amazing pools' ? 'selected' : '' %>>Amazing Pools</option>
+                    </select>
+                    <div class="invalid-feedback">Category should be selected.</div>
+                </div>
+
                 <button class="btn btn-dark editBtn  mt-3">Edit</button>
             </form>
         </div>
