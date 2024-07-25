@@ -58,9 +58,9 @@ const sessionOptions = {
 
 
 //root
-app.get("/", (req, res) => {
-    res.send("Hi, I am root");
-});
+// app.get("/", (req, res) => {
+//     res.send("Hi, I am root");
+// });
 
 //session as a middleware
 app.use(session(sessionOptions));

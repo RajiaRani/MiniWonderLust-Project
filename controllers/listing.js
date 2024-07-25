@@ -115,6 +115,8 @@ module.exports.updateForm = async (req, res) => {
     //res.redirect(`/listings/${id}`);
 };
 
+
+
 // DELETE ROUTE
 module.exports.destroyListing = async (req, res) => {
 

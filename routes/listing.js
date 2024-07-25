@@ -47,7 +47,6 @@ router
     wrapAsync(listingController.destroyListing)); //DELETE ROUTE
 
 
-
 //Edit route
 router.get(
     "/:id/edit",

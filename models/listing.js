@@ -30,14 +30,18 @@ const listingSchema = new Schema({
    geometry: {
     type: {
       type: String, // Don't do `{ location: { type: String } }`
-      enum: ['Point'], // 'location.type' must be 'Point'
+      enum: ["Point"], // 'location.type' must be 'Point'
       required: true
     },
     coordinates: {
       type: [ Number ],
       required: true
     }
-   }
+   },
+  //  category:{
+  //   type: String,
+  //   enum: ["mountains", "rooms", "trending", "castles", "arctic", "iconic cities", "camping", "amazing views", "farms", "lakefront", "beach", "amazing pools"],
+  //  }
 });
 
 //post middleware
@@ -49,3 +53,6 @@ listingSchema.post("findOneAndDelete", async(listing) => {
 
 const Listing = mongoose.model("Listing", listingSchema);
 module.exports = Listing;
+
+
+
