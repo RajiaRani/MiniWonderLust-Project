@@ -48,36 +48,41 @@ module.exports.createListing = async (req, res, next) => {
     //     throw new ExpressError(400, "Please enter the validate data.");
     // }
 
-  let response = await geocodingClient
-      .forwardGeocode({
-        query: req.body.listing.location,
-        limit: 1
-      }).send();
-      
-    //console.log(response.body.features[0].geometry);
-    if (response.body.features.length === 0) {
-        req.flash("error", "Location not found");
-        return res.redirect("/listings/new");
-    }
+ try{
+    let response = await geocodingClient
+    .forwardGeocode({
+      query: req.body.listing.location,
+      limit: 1
+    }).send();
+    
+  //console.log(response.body.features[0].geometry);
+  if (response.body.features.length === 0) {
+      req.flash("error", "Location not found");
+      return res.redirect("/listings/new");
+  }
 
 
-    let url = req.file.path;
-    let filename = req.file.filename;
-    const newListing = new Listing(req.body.listing);
-    newListing.owner = req.user._id;
-    newListing.image = {url, filename};
+  let url = req.file.path;
+  let filename = req.file.filename;
+  const newListing = new Listing(req.body.listing);
+  newListing.owner = req.user._id;
+  newListing.image = {url, filename};
 
-    newListing.geometry = response.body.features[0].geometry;
+  newListing.geometry = response.body.features[0].geometry;
 
 
-   if(!newListing.description){
-    throw new ExpressError(400,"description is missing!!");
-   }
-   
-    let savedListing = await newListing.save();
-    console.log(savedListing);
-    req.flash("success", "listing added successfully!");
-    res.redirect(`/listings`);
+ if(!newListing.description){
+  throw new ExpressError(400,"description is missing!!");
+ }
+ 
+  let savedListing = await newListing.save();
+  console.log(savedListing);
+  req.flash("success", "listing added successfully!");
+  res.redirect(`/listings`);
+ } catch(ee) {
+    console.log(err);
+    next(err);
+ }
 };
 
 

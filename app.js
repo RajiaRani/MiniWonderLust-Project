@@ -75,13 +75,9 @@ const sessionOptions = {
 };
 
 
-//root
-// app.get("/", (req, res) => {
-//     res.send("Hi, I am root");
-// });
-
-
-
+app.get('/', (req, res) => {
+    res.redirect('/listings');
+});
 
 
 //session as a middleware
@@ -106,9 +102,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/', (req, res) => {
-    res.redirect('/listings');
-});
+
 
 
 //router
