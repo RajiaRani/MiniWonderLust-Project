@@ -69,14 +69,15 @@ module.exports.createListing = async (req, res, next) => {
 
     newListing.geometry = response.body.features[0].geometry;
 
+
    if(!newListing.description){
     throw new ExpressError(400,"description is missing!!");
    }
    
     let savedListing = await newListing.save();
-    //console.log(savedListing);
+   // console.log(savedListing);
     req.flash("success", "listing added successfully!");
-    res.redirect(`/listings/${newListing._id}`);
+    res.redirect(`/listings/${savedListing ._id}`);
 };
 
 
