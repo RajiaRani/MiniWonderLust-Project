@@ -11,6 +11,7 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 
 //require passport-strategy
@@ -22,6 +23,7 @@ const User = require("./models/user.js");
 const listingsRouter = require("./routes/listing.js");
 const reviewsRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
+const { error } = require("console");
 
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
@@ -30,6 +32,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
 
+const dbUrl = process.env.ATLASDB_URL;
 
 const mongoURL = "mongodb://127.0.0.1:27017/wonderlust";
 main()
@@ -41,12 +44,26 @@ main()
     });
 
 async function main() {
-    await mongoose.connect(mongoURL);
+    await mongoose.connect(dbUrl);
 };
+
+
+const store = MongoStore.create({
+    mongoUrl:dbUrl,
+    crypto: {
+       secret: process.env.SECRET,
+    },
+    touchAfter: 24 * 3600 
+});
+
+store.on("error" ,() => {
+    console.log("error in connect-mongo", error)
+});
 
 //set the sessions options
 const sessionOptions = {
-    secret: "mysuperscretcode",
+    store,
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -61,6 +78,10 @@ const sessionOptions = {
 // app.get("/", (req, res) => {
 //     res.send("Hi, I am root");
 // });
+
+
+
+
 
 //session as a middleware
 app.use(session(sessionOptions));

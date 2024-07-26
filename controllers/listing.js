@@ -34,8 +34,7 @@ module.exports.showListing = async (req, res) => {
         res.redirect("/listings");
     };
     //console.log(listing);
-    res.render("listing/show.ejs", { listing, 
-        hereMapsApiKey: process.env.HERE_MAPS_API_KEY  });
+    res.render("listing/show.ejs", { listing, hereMapsApiKey: process.env.HERE_MAPS_API_KEY  });
 };
 
 //CREATE ROUTE
