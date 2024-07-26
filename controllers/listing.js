@@ -48,33 +48,40 @@ module.exports.createListing = async (req, res, next) => {
     //     throw new ExpressError(400, "Please enter the validate data.");
     // }
 
- try{
+    try {
+        // Check if listing data is present
+        if (!req.body.listing) {
+            throw new ExpressError('Listing data is required', 400);
+        }
+
+
     let response = await geocodingClient
     .forwardGeocode({
       query: req.body.listing.location,
       limit: 1
     }).send();
-    
-  //console.log(response.body.features[0].geometry);
+    //console.log(response.body.features[0].geometry);
+
+  // Check if location was found
   if (response.body.features.length === 0) {
       req.flash("error", "Location not found");
       return res.redirect("/listings/new");
   }
 
-
+ // Create the new listing
   let url = req.file.path;
   let filename = req.file.filename;
   const newListing = new Listing(req.body.listing);
   newListing.owner = req.user._id;
   newListing.image = {url, filename};
-
   newListing.geometry = response.body.features[0].geometry;
 
-
+// Check for missing description
  if(!newListing.description){
   throw new ExpressError(400,"description is missing!!");
- }
- 
+ };
+
+  // Save the listing
   let savedListing = await newListing.save();
   console.log(savedListing);
   req.flash("success", "listing added successfully!");
