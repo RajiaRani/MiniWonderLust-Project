@@ -13,6 +13,7 @@ const ejsMate = require("ejs-mate");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
+const ExpressError = require("./utils/ExpressError.js");
 
 //require passport-strategy
 const passport = require("passport");
