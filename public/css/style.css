@@ -191,3 +191,16 @@ body{
   display: flex;
   align-items: center;
 }
+#filters a{
+    text-decoration: none;
+    color: #222222;
+    font-weight: 500;
+    font-size: 20px;
+}
+#filters a:hover
+{
+    color: #fe424d;
+}
+.navbar-nav a:hover{
+  text-decoration: underline;
+}
