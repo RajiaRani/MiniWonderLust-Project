@@ -12,9 +12,14 @@
         </div>
 
         <div class="navbar-nav ms-auto">
-          <form class="d-flex" role="search">
-            <input class="form-control me-2 input-btn" type="search" placeholder="Search destination" aria-label="Search">
-            <button class="btn btn-outline-success  search-btn" type="submit"> <i class="fa-solid fa-magnifying-glass"></i>Search</button>
+          <form class="d-flex" role="search" method="GET" action="/listings/filter">
+            <input class="form-control me-2 input-btn" 
+            type="search" 
+            placeholder="Search destination" 
+            aria-label="Search"
+            name="category">
+            <button class="btn btn-outline-success  search-btn" type="submit">
+              <i class="fa-solid fa-magnifying-glass"></i>Search</button>
           </form>
         </div>
 

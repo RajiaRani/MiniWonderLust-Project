@@ -33,6 +33,8 @@ router.get(
 //Filter
 router.get("/filter", wrapAsync(listingController.filterByCategory));
 
+
+
 router
 .route("/:id")
 //Step:2 show route

@@ -143,3 +143,11 @@ module.exports.destroyListing = async (req, res) => {
     res.redirect("/listings");
 
 };
+
+
+//search 
+module.exports.filterByCategory= async(req,res) => {
+    let { category} = req.query;
+    const searchedListings = await Listing.find({ category : {$regex : category, $options: "i"} });
+    res.render("listing/index.ejs", { allListing: searchedListings });
+}
